@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentions Légales - À vos papattes by Nath</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        :root {
+            --primary: #2A9D8F;
+            --primary-dark: #21867a;
+            --secondary: #E9C46A;
+            --accent: #E76F51;
+            --bg-light: #F4F9F9;
+            --bg-white: #FFFFFF;
+            --text-dark: #264653;
+            --text-gray: #666666;
+            --radius: 16px;
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+        }
+
+        /* Mode sombre */
+        [data-theme="dark"] {
+            --bg-light: #1a1a2e;
+            --bg-white: #16213e;
+            --text-dark: #eaeaea;
+            --text-gray: #b0b0b0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.8;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Fredoka', sans-serif;
+            font-weight: 600;
+        }
+
+        a {
+            color: var(--primary);
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            transition: background-color 0.3s;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.6rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background-color: var(--primary);
+            color: white;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .back-btn:hover {
+            background-color: var(--primary-dark);
+            text-decoration: none;
+            transform: translateY(-2px);
+        }
+
+        /* Contenu principal */
+        .legal-content {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 20px;
+        }
+
+        .legal-content h1 {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .last-update {
+            text-align: center;
+            color: var(--text-gray);
+            margin-bottom: 40px;
+            font-size: 0.9rem;
+        }
+
+        .legal-card {
+            background: var(--bg-white);
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow);
+            margin-bottom: 30px;
+            transition: background-color 0.3s;
+        }
+
+        .legal-card h2 {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .legal-card h2 i {
+            color: var(--accent);
+        }
+
+        .legal-card h3 {
+            color: var(--text-dark);
+            font-size: 1.1rem;
+            margin: 25px 0 10px 0;
+        }
+
+        .legal-card p, .legal-card ul {
+            color: var(--text-gray);
+            margin-bottom: 15px;
+        }
+
+        .legal-card ul {
+            padding-left: 20px;
+        }
+
+        .legal-card li {
+            margin-bottom: 8px;
+            list-style: none;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .legal-card li::before {
+            content: "🐾";
+            position: absolute;
+            left: 0;
+            font-size: 0.8rem;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            margin: 20px 0;
+        }
+
+        .info-box strong {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .highlight {
+            background-color: var(--secondary);
+            color: var(--text-dark);
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            text-align: center;
+            padding: 30px;
+            margin-top: 40px;
+        }
+
+        [data-theme="dark"] footer {
+            background-color: #0f0f1a;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary);
+            border-radius: 50px;
+            padding: 8px 15px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-dark);
+            font-weight: 600;
+            transition: all 0.3s;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .nav-actions {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        @media (max-width: 768px) {
+            .legal-content h1 {
+                font-size: 1.8rem;
+            }
+
+            .legal-card {
+                padding: 25px;
+            }
+
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .nav-actions {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-paw"></i> À vos papattes by Nath
+            </a>
+            <div class="nav-actions">
+                <button class="theme-toggle" onclick="toggleTheme()">
+                    <i class="fa-solid fa-moon"></i>
+                    <span>Mode sombre</span>
+                </button>
+                <a href="index.html" class="back-btn">
+                    <i class="fa-solid fa-arrow-left"></i> Retour au site
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <main class="legal-content">
+        <h1>📜 Mentions Légales</h1>
+        <p class="last-update">Dernière mise à jour : Décembre 2025</p>
+
+        <!-- Éditeur du site -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-user"></i> Éditeur du site</h2>
+            
+            <div class="info-box">
+                <strong>À vos papattes by Nath</strong>
+                Service de garde d'animaux et promenades
+            </div>
+
+            <p><strong>Responsable de publication :</strong> Nathalie</p>
+            <p><strong>Statut :</strong> Auto-entrepreneur / Micro-entreprise</p>
+            <p><strong>SIRET :</strong> <span class="highlight">À compléter</span></p>
+            <p><strong>Adresse :</strong> 7 rue Pierre de Coubertin, Oberhausbergen (67205)</p>
+            <p><strong>Zone de service :</strong> Rayon de 5 km autour d'Oberhausbergen</p>
+            <p><strong>Téléphone :</strong> <a href="tel:0682911672">06 82 91 16 72</a></p>
+            <p><strong>Email :</strong> <a href="mailto:info@avospapattes-by-nath.fr">info@avospapattes-by-nath.fr</a></p>
+        </div>
+
+        <!-- Hébergement -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-server"></i> Hébergement</h2>
+            <p>Ce site est hébergé par :</p>
+            <p><strong>Netlify, Inc.</strong></p>
+            <p>44 Montgomery Street, Suite 300<br>
+            San Francisco, California 94104<br>
+            États-Unis</p>
+            <p>Site web : <a href="https://www.netlify.com" target="_blank" rel="noopener">www.netlify.com</a></p>
+        </div>
+
+        <!-- Propriété intellectuelle -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-copyright"></i> Propriété intellectuelle</h2>
+            <p>L'ensemble du contenu de ce site (textes, images, graphismes, logo, icônes, etc.) est la propriété exclusive de <strong>À vos papattes by Nath</strong>, sauf mention contraire.</p>
+            <p>Toute reproduction, représentation, modification, publication ou adaptation de tout ou partie des éléments du site est interdite sans autorisation écrite préalable.</p>
+            
+            <h3>Crédits images</h3>
+            <ul>
+                <li>Photos d'illustration : <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a> (licence libre)</li>
+                <li>Icônes : <a href="https://fontawesome.com" target="_blank" rel="noopener">Font Awesome</a></li>
+                <li>Polices : <a href="https://fonts.google.com" target="_blank" rel="noopener">Google Fonts</a> (Fredoka, Nunito)</li>
+            </ul>
+        </div>
+
+        <!-- Protection des données -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-shield-halved"></i> Protection des données personnelles (RGPD)</h2>
+            
+            <h3>Données collectées</h3>
+            <p>Via le formulaire de contact, nous collectons :</p>
+            <ul>
+                <li>Nom et prénom</li>
+                <li>Adresse email</li>
+                <li>Numéro de téléphone (optionnel)</li>
+                <li>Nom de votre animal</li>
+                <li>Type de service souhaité</li>
+                <li>Message libre</li>
+            </ul>
+
+            <h3>Finalité du traitement</h3>
+            <p>Ces données sont utilisées <strong>uniquement</strong> pour :</p>
+            <ul>
+                <li>Répondre à votre demande de contact</li>
+                <li>Organiser les prestations de garde/promenade</li>
+                <li>Vous recontacter par téléphone ou email</li>
+            </ul>
+
+            <h3>Stockage des données</h3>
+            <p>Vos données sont stockées de manière sécurisée sur :</p>
+            <ul>
+                <li><strong>Firebase (Google)</strong> - Base de données sécurisée</li>
+                <li>Durée de conservation : 3 ans maximum après le dernier contact</li>
+            </ul>
+
+            <h3>Vos droits</h3>
+            <p>Conformément au RGPD, vous disposez des droits suivants :</p>
+            <ul>
+                <li><strong>Droit d'accès</strong> : consulter vos données</li>
+                <li><strong>Droit de rectification</strong> : modifier vos données</li>
+                <li><strong>Droit à l'effacement</strong> : supprimer vos données</li>
+                <li><strong>Droit à la portabilité</strong> : récupérer vos données</li>
+            </ul>
+            <p>Pour exercer ces droits, contactez-nous à : <a href="mailto:info@avospapattes-by-nath.fr">info@avospapattes-by-nath.fr</a></p>
+        </div>
+
+        <!-- Cookies -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-cookie-bite"></i> Cookies</h2>
+            <p>Ce site utilise des cookies <strong>strictement nécessaires</strong> à son fonctionnement :</p>
+            <ul>
+                <li><strong>Préférence de thème</strong> : mémoriser votre choix mode clair/sombre</li>
+            </ul>
+            <p>Aucun cookie de tracking, publicité ou analyse n'est utilisé.</p>
+            <p>Nous n'utilisons <strong>pas</strong> Google Analytics ni aucun outil de suivi.</p>
+        </div>
+
+        <!-- Responsabilité -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-triangle-exclamation"></i> Limitation de responsabilité</h2>
+            <p>Les informations présentes sur ce site sont fournies à titre indicatif et peuvent être modifiées à tout moment.</p>
+            <p><strong>À vos papattes by Nath</strong> ne saurait être tenue responsable :</p>
+            <ul>
+                <li>Des erreurs ou omissions dans le contenu</li>
+                <li>Des dommages résultant d'une intrusion frauduleuse d'un tiers</li>
+                <li>De l'interruption temporaire du site pour maintenance</li>
+            </ul>
+        </div>
+
+        <!-- Droit applicable -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-scale-balanced"></i> Droit applicable</h2>
+            <p>Le présent site et ses mentions légales sont régis par le droit français.</p>
+            <p>En cas de litige, et après tentative de résolution amiable, les tribunaux français seront seuls compétents.</p>
+        </div>
+
+        <!-- Contact -->
+        <div class="legal-card">
+            <h2><i class="fa-solid fa-envelope"></i> Contact</h2>
+            <p>Pour toute question concernant ces mentions légales :</p>
+            <div class="info-box">
+                <strong>📧 Email</strong>
+                <a href="mailto:info@avospapattes-by-nath.fr" style="color: white;">info@avospapattes-by-nath.fr</a>
+            </div>
+            <div class="info-box" style="background: linear-gradient(135deg, var(--accent) 0%, #d65b3b 100%);">
+                <strong>📱 Téléphone</strong>
+                <a href="tel:0682911672" style="color: white;">06 82 91 16 72</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2025 À vos papattes by Nath - Tous droits réservés 🐾</p>
+    </footer>
+
+    <script>
+        // Gestion du thème
+        function toggleTheme() {
+            const html = document.documentElement;
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            
+            updateToggleButton(newTheme);
+        }
+
+        function updateToggleButton(theme) {
+            const btn = document.querySelector('.theme-toggle');
+            if (theme === 'dark') {
+                btn.innerHTML = '<i class="fa-solid fa-sun"></i><span>Mode clair</span>';
+            } else {
+                btn.innerHTML = '<i class="fa-solid fa-moon"></i><span>Mode sombre</span>';
+            }
+        }
+
+        // Charger le thème sauvegardé
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateToggleButton(savedTheme);
+        });
+    </script>
+</body>
+</html>

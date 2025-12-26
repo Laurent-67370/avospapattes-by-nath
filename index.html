@@ -1,0 +1,1866 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>À vos papattes by Nath - Garderie & Promenade pour animaux</title>
+    <!-- Import des polices Google Fonts pour un look moderne et amical -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <!-- Import d'une librairie d'icônes légère (FontAwesome CDN) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        /* --- VARIABLES CSS & RESET --- */
+        :root {
+            --primary: #2A9D8F;       /* Vert d'eau rassurant */
+            --primary-dark: #21867a;
+            --secondary: #E9C46A;     /* Jaune doux */
+            --accent: #E76F51;        /* Terracotta chaleureux */
+            --bg-light: #F4F9F9;      /* Fond très clair */
+            --bg-white: #FFFFFF;
+            --text-dark: #264653;     /* Texte principal */
+            --text-gray: #666666;
+            --radius: 16px;           /* Coins arrondis "friendly" */
+            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --container-width: 1200px;
+        }
+
+        /* Mode sombre */
+        [data-theme="dark"] {
+            --bg-light: #1a1a2e;
+            --bg-white: #16213e;
+            --text-dark: #eaeaea;
+            --text-gray: #b0b0b0;
+            --shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        [data-theme="dark"] .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+        }
+
+        [data-theme="dark"] .service-card,
+        [data-theme="dark"] .price-card,
+        [data-theme="dark"] .testimonial-card,
+        [data-theme="dark"] .pet-card {
+            background: var(--bg-white);
+        }
+
+        [data-theme="dark"] footer {
+            background-color: #0f0f1a;
+        }
+
+        [data-theme="dark"] .contact-info {
+            background-color: #0f3d38;
+        }
+
+        [data-theme="dark"] .contact-container {
+            background-color: #145249;
+        }
+
+        /* Transition douce pour le changement de thème */
+        body, header, .service-card, .price-card, .testimonial-card, 
+        .pet-card, .contact-form, footer {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        /* Bouton toggle thème */
+        .theme-toggle {
+            background: none;
+            border: 2px solid var(--primary);
+            border-radius: 50%;
+            width: 42px;
+            height: 42px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+            font-size: 1.1rem;
+            transition: all 0.3s;
+            margin-right: 10px;
+        }
+
+        .theme-toggle:hover {
+            background-color: var(--primary);
+            color: white;
+            transform: rotate(20deg);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Nunito', sans-serif;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Fredoka', sans-serif; /* Police aux coins arrondis */
+            font-weight: 600;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+            transition: 0.3s ease;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+            border-radius: var(--radius);
+        }
+
+        /* --- LAYOUT UTILITIES --- */
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .section-padding {
+            padding: 80px 0;
+            position: relative;
+        }
+
+        .text-center { text-align: center; }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 32px;
+            border-radius: 50px;
+            font-weight: 700;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.4);
+        }
+
+        .btn-secondary {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background-color: #d65b3b;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(231, 111, 81, 0.4);
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: var(--primary-dark);
+            margin-bottom: 1rem;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-gray);
+            max-width: 600px;
+            margin: 0 auto 3rem auto;
+        }
+
+        /* --- ILLUSTRATIONS SVG DÉCORATIVES --- */
+        .paw-pattern {
+            position: absolute;
+            opacity: 0.05;
+            pointer-events: none;
+        }
+
+        .floating-pet {
+            position: absolute;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        /* Animation flottante */
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(3deg); }
+        }
+
+        @keyframes floatReverse {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(15px) rotate(-3deg); }
+        }
+
+        @keyframes pawWalk {
+            0% { opacity: 0.3; transform: scale(0.8); }
+            50% { opacity: 0.6; transform: scale(1); }
+            100% { opacity: 0.3; transform: scale(0.8); }
+        }
+
+        .float-animation {
+            animation: float 4s ease-in-out infinite;
+        }
+
+        .float-reverse-animation {
+            animation: floatReverse 5s ease-in-out infinite;
+        }
+
+        /* --- HEADER & NAV --- */
+        header {
+            background-color: var(--bg-white);
+            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Fredoka', sans-serif;
+            font-size: 1.6rem;
+            color: var(--primary-dark);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo i {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            font-size: 1.5rem;
+            color: var(--text-dark);
+            cursor: pointer;
+        }
+
+        /* --- HERO SECTION --- */
+        .hero {
+            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
+            padding: 100px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.2;
+            margin-bottom: 20px;
+            color: var(--text-dark);
+        }
+
+        .hero h1 span {
+            color: var(--primary);
+        }
+
+        .hero p {
+            font-size: 1.25rem;
+            color: var(--text-gray);
+            margin-bottom: 30px;
+            max-width: 500px;
+        }
+
+        .hero-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Forme organique */
+            box-shadow: var(--shadow);
+            animation: morph 8s ease-in-out infinite;
+            object-fit: cover;
+        }
+
+        @keyframes morph {
+            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
+            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
+        }
+
+        /* Décors Hero */
+        .hero-deco-cat {
+            position: absolute;
+            right: -50px;
+            bottom: 10%;
+            width: 120px;
+            opacity: 0.15;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .hero-deco-dog {
+            position: absolute;
+            left: -30px;
+            top: 20%;
+            width: 100px;
+            opacity: 0.12;
+            animation: floatReverse 5s ease-in-out infinite;
+        }
+
+        .hero-paws {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 100px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%232A9D8F' opacity='0.08'%3E%3Cpath d='M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5v1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3v-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z'/%3E%3C/svg%3E");
+            background-size: 50px;
+            background-repeat: repeat-x;
+            opacity: 0.5;
+        }
+
+        /* --- FEATURES / SERVICES --- */
+        .services-section {
+            position: relative;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .service-card {
+            background: var(--bg-white);
+            padding: 40px 30px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 100px;
+            height: 100px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%232A9D8F' opacity='0.05'%3E%3Cpath d='M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5v1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3v-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z'/%3E%3C/svg%3E");
+            background-size: contain;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .service-card:hover::before {
+            opacity: 1;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .icon-box {
+            width: 80px;
+            height: 80px;
+            background-color: rgba(42, 157, 143, 0.1);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px auto;
+            color: var(--primary);
+            font-size: 2rem;
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            font-size: 1.5rem;
+        }
+
+        /* Illustration décorative entre les services */
+        .services-deco {
+            position: absolute;
+            width: 150px;
+            opacity: 0.08;
+            z-index: 1;
+        }
+
+        .services-deco-left {
+            left: -50px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+
+        .services-deco-right {
+            right: -50px;
+            bottom: 20%;
+        }
+
+        /* --- PETS GALLERY SECTION --- */
+        .pets-gallery {
+            background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%);
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pets-strip {
+            display: flex;
+            gap: 30px;
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .pet-illustration {
+            flex-shrink: 0;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-white);
+            border-radius: 50%;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+            padding: 20px;
+        }
+
+        .pet-illustration svg {
+            width: 100%;
+            height: 100%;
+        }
+
+        /* --- ABOUT --- */
+        .about {
+            background-color: var(--bg-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .about .container {
+            display: flex;
+            align-items: center;
+            gap: 50px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .about-img {
+            flex: 1;
+            position: relative;
+        }
+
+        .about-img img {
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+        }
+
+        /* Badge décoratif sur l'image */
+        .about-img-badge {
+            position: absolute;
+            bottom: -20px;
+            right: -20px;
+            width: 100px;
+            height: 100px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .about-img-badge svg {
+            width: 60px;
+            height: 60px;
+        }
+
+        .about-content {
+            flex: 1;
+        }
+
+        .about-tags {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 20px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            background-color: var(--secondary);
+            color: var(--text-dark);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        /* Décor about */
+        .about-deco {
+            position: absolute;
+            right: 5%;
+            top: 10%;
+            width: 200px;
+            opacity: 0.06;
+        }
+
+        /* --- PRICING --- */
+        .pricing-section {
+            position: relative;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: start;
+            position: relative;
+            z-index: 2;
+        }
+
+        .price-card {
+            background: var(--bg-white);
+            padding: 40px;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow);
+            position: relative;
+            border: 2px solid transparent;
+        }
+
+        .price-card.popular {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            z-index: 2;
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary);
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+        }
+
+        .price-header h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .price {
+            font-size: 2.5rem;
+            font-family: 'Fredoka', sans-serif;
+            color: var(--primary-dark);
+            font-weight: 700;
+        }
+
+        .price span {
+            font-size: 1rem;
+            color: var(--text-gray);
+            font-family: 'Nunito', sans-serif;
+            font-weight: 400;
+        }
+
+        .price-features {
+            margin: 30px 0;
+            text-align: left;
+        }
+
+        .price-features li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .price-features i {
+            color: var(--primary);
+        }
+
+        /* Illustration Prix */
+        .price-card-icon {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            opacity: 0.15;
+        }
+
+        /* --- TESTIMONIALS --- */
+        .testimonials {
+            background-color: var(--bg-white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .testimonial-card {
+            background-color: var(--bg-light);
+            padding: 30px;
+            border-radius: var(--radius);
+            position: relative;
+        }
+
+        .quote-icon {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2rem;
+            color: #dceceb;
+        }
+
+        .client-info {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .client-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        /* Pet type badge */
+        .pet-type-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--secondary);
+            padding: 3px 10px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            font-weight: 700;
+            margin-top: 5px;
+        }
+
+        .pet-type-badge svg {
+            width: 14px;
+            height: 14px;
+        }
+
+        /* Décor témoignages */
+        .testimonials-deco {
+            position: absolute;
+            left: -80px;
+            bottom: 10%;
+            width: 200px;
+            opacity: 0.05;
+        }
+
+        /* --- CUTE PETS SECTION --- */
+        .cute-pets {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #E9C46A15 0%, #2A9D8F10 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .pets-showcase {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
+
+        .pet-card {
+            background: var(--bg-white);
+            padding: 30px;
+            border-radius: 30px;
+            text-align: center;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s;
+            width: 200px;
+        }
+
+        .pet-card:hover {
+            transform: translateY(-10px) rotate(2deg);
+        }
+
+        .pet-card svg {
+            width: 100px;
+            height: 100px;
+            margin-bottom: 15px;
+        }
+
+        .pet-card h4 {
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .pet-card p {
+            font-size: 0.9rem;
+            color: var(--text-gray);
+        }
+
+        /* --- CONTACT --- */
+        .contact-section {
+            position: relative;
+        }
+
+        .contact-container {
+            background-color: var(--primary);
+            border-radius: var(--radius);
+            overflow: hidden;
+            display: flex;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 2;
+        }
+
+        .contact-info {
+            background-color: var(--primary-dark);
+            color: white;
+            padding: 50px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-info::after {
+            content: '';
+            position: absolute;
+            bottom: -30px;
+            right: -30px;
+            width: 150px;
+            height: 150px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='white' opacity='0.1'%3E%3Cpath d='M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5v1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3v-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z'/%3E%3C/svg%3E");
+            background-size: contain;
+        }
+
+        .contact-info h3 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .info-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+
+        .contact-form {
+            background-color: var(--bg-white);
+            padding: 50px;
+            flex: 1.5;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--text-dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #eee;
+            border-radius: 8px;
+            font-family: inherit;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary);
+        }
+
+        /* Décor contact */
+        .contact-deco {
+            position: absolute;
+            right: 10%;
+            top: -60px;
+            width: 120px;
+            opacity: 0.1;
+            animation: float 4s ease-in-out infinite;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            background-color: var(--text-dark);
+            color: white;
+            padding: 50px 0 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .footer-pets {
+            position: absolute;
+            top: 20px;
+            right: 10%;
+            display: flex;
+            gap: 20px;
+            opacity: 0.1;
+        }
+
+        .footer-pets svg {
+            width: 60px;
+            height: 60px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .footer-col h4 {
+            font-size: 1.2rem;
+            margin-bottom: 20px;
+            color: var(--secondary);
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a:hover {
+            color: var(--secondary);
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .social-icons a {
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.3s;
+        }
+
+        .social-icons a:hover {
+            background-color: var(--primary);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        /* --- RESPONSIVE MEDIA QUERIES --- */
+        @media (max-width: 992px) {
+            .hero h1 { font-size: 2.5rem; }
+            .hero .container { flex-direction: column-reverse; text-align: center; }
+            .hero p { margin: 0 auto 30px auto; }
+            .about .container { flex-direction: column; }
+            .price-card.popular { transform: none; }
+            .hero-deco-cat, .hero-deco-dog { display: none; }
+            .about-deco { display: none; }
+        }
+
+        @media (max-width: 768px) {
+            .mobile-menu-btn { display: block; }
+            
+            .nav-links {
+                position: fixed;
+                top: 70px;
+                left: -100%;
+                width: 100%;
+                background-color: var(--bg-white);
+                flex-direction: column;
+                padding: 40px 0;
+                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
+                transition: 0.3s ease-in-out;
+            }
+
+            .nav-links.active { left: 0; }
+            
+            .contact-container { flex-direction: column; }
+            
+            .section-title { font-size: 2rem; }
+
+            .pets-showcase { gap: 20px; }
+            .pet-card { width: 150px; padding: 20px; }
+            .pet-card svg { width: 70px; height: 70px; }
+
+            .pets-strip { animation-duration: 20s; }
+            
+            .logo { font-size: 1.4rem; } /* Ajustement logo mobile */
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a href="#" class="logo">
+                    <i class="fa-solid fa-paw"></i> À vos papattes by Nath
+                </a>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#accueil">Accueil</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#apropos">À propos</a></li>
+                    <li><a href="#tarifs">Tarifs</a></li>
+                    <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    <li><a href="#contact" class="btn btn-primary">Réserver</a></li>
+                </ul>
+                <div class="nav-right">
+                    <button class="theme-toggle" id="themeToggle" title="Changer le thème">
+                        <i class="fa-solid fa-moon"></i>
+                    </button>
+                    <div class="mobile-menu-btn" id="menuBtn">
+                        <i class="fa-solid fa-bars"></i>
+                    </div>
+                </div>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="accueil" class="hero">
+        <!-- Décors SVG -->
+        <svg class="hero-deco-cat" viewBox="0 0 64 64" fill="#264653">
+            <path d="M50 16c0-4-2-8-6-10v-4l-4 2-4-2v4c-4 2-6 6-6 10v4h-6v8c0 8 6 16 16 20h4c10-4 16-12 16-20v-8h-6v-4h-4zm-18 20c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4zm20 0c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4z"/>
+            <ellipse cx="32" cy="50" rx="4" ry="2"/>
+        </svg>
+        <svg class="hero-deco-dog" viewBox="0 0 64 64" fill="#264653">
+            <path d="M56 24c-2-4-6-6-10-6h-4c-2-4-6-6-10-6s-8 2-10 6h-4c-4 0-8 2-10 6-2 4-2 8 0 12l2 4v14c0 2 2 4 4 4h4c2 0 4-2 4-4v-6h20v6c0 2 2 4 4 4h4c2 0 4-2 4-4V40l2-4c2-4 2-8 0-12zM24 36c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4zm16 0c-2 0-4-2-4-4s2-4 4-4 4 2 4 4-2 4-4 4z"/>
+        </svg>
+        <div class="hero-paws"></div>
+        
+        <div class="container">
+            <div class="hero-content">
+                <h1>Votre animal mérite le <span>meilleur des soins</span>.</h1>
+                <p>Garde à domicile, promenades ludiques et amour inconditionnel pour vos boules de poils pendant vos absences.</p>
+                <a href="#services" class="btn btn-primary">Découvrir mes services</a>
+                <a href="#apropos" class="btn btn-secondary" style="margin-left: 10px;">Me connaître</a>
+            </div>
+            <div class="hero-image">
+                <!-- Image aléatoire chien/chat -->
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=600&fit=crop&crop=face" alt="Chien heureux">
+            </div>
+        </div>
+    </section>
+
+    <!-- Bande défilante d'illustrations animaux -->
+    <section class="pets-gallery">
+        <div class="pets-strip">
+            <!-- Chien 1 -->
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="45" fill="#E9C46A" opacity="0.3"/>
+                    <ellipse cx="50" cy="60" rx="25" ry="20" fill="#8B4513"/>
+                    <circle cx="40" cy="50" r="8" fill="#8B4513"/>
+                    <circle cx="60" cy="50" r="8" fill="#8B4513"/>
+                    <circle cx="40" cy="48" r="3" fill="#000"/>
+                    <circle cx="60" cy="48" r="3" fill="#000"/>
+                    <ellipse cx="50" cy="62" rx="5" ry="3" fill="#000"/>
+                    <path d="M30 35 Q25 20 35 25" stroke="#8B4513" stroke-width="8" fill="none" stroke-linecap="round"/>
+                    <path d="M70 35 Q75 20 65 25" stroke="#8B4513" stroke-width="8" fill="none" stroke-linecap="round"/>
+                    <path d="M44 68 Q50 75 56 68" stroke="#E76F51" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <!-- Chat 1 -->
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="55" r="45" fill="#2A9D8F" opacity="0.2"/>
+                    <ellipse cx="50" cy="60" rx="22" ry="18" fill="#808080"/>
+                    <path d="M28 45 L22 20 L38 35 Z" fill="#808080"/>
+                    <path d="M72 45 L78 20 L62 35 Z" fill="#808080"/>
+                    <path d="M28 45 L24 22 L36 35 Z" fill="#FFB6C1"/>
+                    <path d="M72 45 L76 22 L64 35 Z" fill="#FFB6C1"/>
+                    <ellipse cx="40" cy="55" rx="5" ry="6" fill="#90EE90"/>
+                    <ellipse cx="60" cy="55" rx="5" ry="6" fill="#90EE90"/>
+                    <ellipse cx="40" cy="55" rx="2" ry="5" fill="#000"/>
+                    <ellipse cx="60" cy="55" rx="2" ry="5" fill="#000"/>
+                    <ellipse cx="50" cy="65" rx="3" ry="2" fill="#FFB6C1"/>
+                    <path d="M47 68 L50 72 L53 68" stroke="#808080" stroke-width="2" fill="none"/>
+                    <line x1="25" y1="58" x2="35" y2="56" stroke="#808080" stroke-width="1"/>
+                    <line x1="25" y1="62" x2="35" y2="62" stroke="#808080" stroke-width="1"/>
+                    <line x1="65" y1="56" x2="75" y2="58" stroke="#808080" stroke-width="1"/>
+                    <line x1="65" y1="62" x2="75" y2="62" stroke="#808080" stroke-width="1"/>
+                </svg>
+            </div>
+            <!-- Chien 2 - Golden -->
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="45" fill="#E76F51" opacity="0.2"/>
+                    <ellipse cx="50" cy="60" rx="28" ry="22" fill="#DAA520"/>
+                    <path d="M22 50 Q15 35 25 40 Q20 55 28 50" fill="#DAA520"/>
+                    <path d="M78 50 Q85 35 75 40 Q80 55 72 50" fill="#DAA520"/>
+                    <circle cx="40" cy="52" r="4" fill="#000"/>
+                    <circle cx="60" cy="52" r="4" fill="#000"/>
+                    <circle cx="41" cy="51" r="1.5" fill="#fff"/>
+                    <circle cx="61" cy="51" r="1.5" fill="#fff"/>
+                    <ellipse cx="50" cy="62" rx="6" ry="4" fill="#000"/>
+                    <path d="M42 70 Q50 78 58 70" stroke="#E76F51" stroke-width="3" fill="none" stroke-linecap="round"/>
+                    <ellipse cx="50" cy="74" rx="8" ry="4" fill="#FF6B6B" opacity="0.6"/>
+                </svg>
+            </div>
+            <!-- Chat 2 - Roux -->
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="55" r="45" fill="#E9C46A" opacity="0.2"/>
+                    <ellipse cx="50" cy="58" rx="24" ry="20" fill="#FF8C00"/>
+                    <path d="M26 42 L18 15 L40 32 Z" fill="#FF8C00"/>
+                    <path d="M74 42 L82 15 L60 32 Z" fill="#FF8C00"/>
+                    <circle cx="38" cy="52" r="6" fill="#fff"/>
+                    <circle cx="62" cy="52" r="6" fill="#fff"/>
+                    <circle cx="38" cy="52" r="3" fill="#2A9D8F"/>
+                    <circle cx="62" cy="52" r="3" fill="#2A9D8F"/>
+                    <circle cx="38" cy="51" r="1" fill="#000"/>
+                    <circle cx="62" cy="51" r="1" fill="#000"/>
+                    <path d="M50 62 L47 66 L53 66 Z" fill="#FFB6C1"/>
+                    <path d="M40 72 Q50 68 60 72" stroke="#FF8C00" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            <!-- Chien 3 - Dalmatien -->
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="45" fill="#264653" opacity="0.1"/>
+                    <ellipse cx="50" cy="58" rx="26" ry="20" fill="#fff" stroke="#000" stroke-width="2"/>
+                    <circle cx="35" cy="50" r="4" fill="#000"/>
+                    <circle cx="55" cy="45" r="3" fill="#000"/>
+                    <circle cx="65" cy="55" r="5" fill="#000"/>
+                    <circle cx="45" cy="65" r="3" fill="#000"/>
+                    <path d="M25 45 Q18 30 30 38" fill="#fff" stroke="#000" stroke-width="2"/>
+                    <path d="M75 45 Q82 30 70 38" fill="#fff" stroke="#000" stroke-width="2"/>
+                    <circle cx="40" cy="52" r="4" fill="#000"/>
+                    <circle cx="60" cy="52" r="4" fill="#000"/>
+                    <ellipse cx="50" cy="60" rx="5" ry="3" fill="#000"/>
+                    <path d="M44 68 Q50 74 56 68" stroke="#FF6B6B" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <!-- Chat 3 - Noir -->
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="55" r="45" fill="#E76F51" opacity="0.15"/>
+                    <ellipse cx="50" cy="58" rx="22" ry="18" fill="#1a1a1a"/>
+                    <path d="M28 42 L20 12 L42 32 Z" fill="#1a1a1a"/>
+                    <path d="M72 42 L80 12 L58 32 Z" fill="#1a1a1a"/>
+                    <ellipse cx="38" cy="52" rx="6" ry="7" fill="#FFD700"/>
+                    <ellipse cx="62" cy="52" rx="6" ry="7" fill="#FFD700"/>
+                    <ellipse cx="38" cy="52" rx="2" ry="6" fill="#000"/>
+                    <ellipse cx="62" cy="52" rx="2" ry="6" fill="#000"/>
+                    <ellipse cx="50" cy="62" rx="3" ry="2" fill="#FFB6C1"/>
+                    <path d="M46 66 L50 70 L54 66" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+                </svg>
+            </div>
+            <!-- Dupliquer pour effet infini -->
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="45" fill="#E9C46A" opacity="0.3"/>
+                    <ellipse cx="50" cy="60" rx="25" ry="20" fill="#8B4513"/>
+                    <circle cx="40" cy="50" r="8" fill="#8B4513"/>
+                    <circle cx="60" cy="50" r="8" fill="#8B4513"/>
+                    <circle cx="40" cy="48" r="3" fill="#000"/>
+                    <circle cx="60" cy="48" r="3" fill="#000"/>
+                    <ellipse cx="50" cy="62" rx="5" ry="3" fill="#000"/>
+                    <path d="M30 35 Q25 20 35 25" stroke="#8B4513" stroke-width="8" fill="none" stroke-linecap="round"/>
+                    <path d="M70 35 Q75 20 65 25" stroke="#8B4513" stroke-width="8" fill="none" stroke-linecap="round"/>
+                    <path d="M44 68 Q50 75 56 68" stroke="#E76F51" stroke-width="2" fill="none" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="55" r="45" fill="#2A9D8F" opacity="0.2"/>
+                    <ellipse cx="50" cy="60" rx="22" ry="18" fill="#808080"/>
+                    <path d="M28 45 L22 20 L38 35 Z" fill="#808080"/>
+                    <path d="M72 45 L78 20 L62 35 Z" fill="#808080"/>
+                    <ellipse cx="40" cy="55" rx="5" ry="6" fill="#90EE90"/>
+                    <ellipse cx="60" cy="55" rx="5" ry="6" fill="#90EE90"/>
+                    <ellipse cx="40" cy="55" rx="2" ry="5" fill="#000"/>
+                    <ellipse cx="60" cy="55" rx="2" ry="5" fill="#000"/>
+                    <ellipse cx="50" cy="65" rx="3" ry="2" fill="#FFB6C1"/>
+                </svg>
+            </div>
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="45" fill="#E76F51" opacity="0.2"/>
+                    <ellipse cx="50" cy="60" rx="28" ry="22" fill="#DAA520"/>
+                    <path d="M22 50 Q15 35 25 40 Q20 55 28 50" fill="#DAA520"/>
+                    <path d="M78 50 Q85 35 75 40 Q80 55 72 50" fill="#DAA520"/>
+                    <circle cx="40" cy="52" r="4" fill="#000"/>
+                    <circle cx="60" cy="52" r="4" fill="#000"/>
+                    <ellipse cx="50" cy="62" rx="6" ry="4" fill="#000"/>
+                    <path d="M42 70 Q50 78 58 70" stroke="#E76F51" stroke-width="3" fill="none" stroke-linecap="round"/>
+                </svg>
+            </div>
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="55" r="45" fill="#E9C46A" opacity="0.2"/>
+                    <ellipse cx="50" cy="58" rx="24" ry="20" fill="#FF8C00"/>
+                    <path d="M26 42 L18 15 L40 32 Z" fill="#FF8C00"/>
+                    <path d="M74 42 L82 15 L60 32 Z" fill="#FF8C00"/>
+                    <circle cx="38" cy="52" r="6" fill="#fff"/>
+                    <circle cx="62" cy="52" r="6" fill="#fff"/>
+                    <circle cx="38" cy="52" r="3" fill="#2A9D8F"/>
+                    <circle cx="62" cy="52" r="3" fill="#2A9D8F"/>
+                    <path d="M50 62 L47 66 L53 66 Z" fill="#FFB6C1"/>
+                </svg>
+            </div>
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="50" r="45" fill="#264653" opacity="0.1"/>
+                    <ellipse cx="50" cy="58" rx="26" ry="20" fill="#fff" stroke="#000" stroke-width="2"/>
+                    <circle cx="35" cy="50" r="4" fill="#000"/>
+                    <circle cx="55" cy="45" r="3" fill="#000"/>
+                    <circle cx="65" cy="55" r="5" fill="#000"/>
+                    <circle cx="40" cy="52" r="4" fill="#000"/>
+                    <circle cx="60" cy="52" r="4" fill="#000"/>
+                    <ellipse cx="50" cy="60" rx="5" ry="3" fill="#000"/>
+                </svg>
+            </div>
+            <div class="pet-illustration">
+                <svg viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="55" r="45" fill="#E76F51" opacity="0.15"/>
+                    <ellipse cx="50" cy="58" rx="22" ry="18" fill="#1a1a1a"/>
+                    <path d="M28 42 L20 12 L42 32 Z" fill="#1a1a1a"/>
+                    <path d="M72 42 L80 12 L58 32 Z" fill="#1a1a1a"/>
+                    <ellipse cx="38" cy="52" rx="6" ry="7" fill="#FFD700"/>
+                    <ellipse cx="62" cy="52" rx="6" ry="7" fill="#FFD700"/>
+                    <ellipse cx="38" cy="52" rx="2" ry="6" fill="#000"/>
+                    <ellipse cx="62" cy="52" rx="2" ry="6" fill="#000"/>
+                    <ellipse cx="50" cy="62" rx="3" ry="2" fill="#FFB6C1"/>
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="section-padding services-section">
+        <!-- Décors -->
+        <svg class="services-deco services-deco-left" viewBox="0 0 100 100" fill="#2A9D8F">
+            <path d="M50 10 C60 10 70 20 70 35 C70 50 60 55 50 55 C40 55 30 50 30 35 C30 20 40 10 50 10"/>
+            <circle cx="35" cy="65" r="12"/>
+            <circle cx="65" cy="65" r="12"/>
+            <circle cx="35" cy="85" r="10"/>
+            <circle cx="65" cy="85" r="10"/>
+        </svg>
+        
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Mes Services</h2>
+                <p class="section-subtitle">Je m'adapte aux besoins de votre animal pour garantir son bien-être et votre sérénité.</p>
+            </div>
+
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <article class="service-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-house-chimney"></i>
+                    </div>
+                    <h3>Garde à domicile</h3>
+                    <p>Je me déplace chez vous pour nourrir, jouer et câliner votre animal. Il reste dans son environnement familier, sans stress.</p>
+                </article>
+
+                <!-- Service 2 -->
+                <article class="service-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-person-walking-dog"></i>
+                    </div>
+                    <h3>Promenades</h3>
+                    <p>Des balades dynamiques ou calmes dans la nature ou le parc. 30, 45 ou 60 minutes pour se dépenser.</p>
+                </article>
+
+                <!-- Service 3 -->
+                <article class="service-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-cat"></i>
+                    </div>
+                    <h3>Visites pour chats</h3>
+                    <p>Changement de litière, nourriture, eau et surtout sessions de jeux et caresses pour vos félins.</p>
+                </article>
+                
+                <!-- Service 4 -->
+                <article class="service-card">
+                    <div class="icon-box">
+                        <i class="fa-solid fa-syringe"></i>
+                    </div>
+                    <h3>Soins & Médicaments</h3>
+                    <p>Je suis formée pour administrer des traitements simples (pilules, gouttes) aux animaux nécessitant une attention particulière.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Nos Amis -->
+    <section class="cute-pets">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Tous les animaux sont les bienvenus</h2>
+                <p class="section-subtitle">Chiens, chats, et même les plus timides trouvent leur bonheur chez À vos papattes by Nath</p>
+            </div>
+            <div class="pets-showcase">
+                <div class="pet-card">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="48" fill="#E9C46A" opacity="0.3"/>
+                        <ellipse cx="50" cy="55" rx="30" ry="25" fill="#D2691E"/>
+                        <path d="M20 40 Q10 20 25 30" fill="#D2691E"/>
+                        <path d="M80 40 Q90 20 75 30" fill="#D2691E"/>
+                        <circle cx="38" cy="48" r="5" fill="#000"/>
+                        <circle cx="62" cy="48" r="5" fill="#000"/>
+                        <circle cx="39" cy="47" r="2" fill="#fff"/>
+                        <circle cx="63" cy="47" r="2" fill="#fff"/>
+                        <ellipse cx="50" cy="58" rx="7" ry="5" fill="#000"/>
+                        <path d="M40 68 Q50 80 60 68" stroke="#E76F51" stroke-width="4" fill="none" stroke-linecap="round"/>
+                        <ellipse cx="50" cy="75" rx="12" ry="6" fill="#FF6B6B" opacity="0.5"/>
+                    </svg>
+                    <h4>Chiens joueurs</h4>
+                    <p>Énergie à revendre !</p>
+                </div>
+                <div class="pet-card">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="48" fill="#2A9D8F" opacity="0.2"/>
+                        <ellipse cx="50" cy="55" rx="28" ry="22" fill="#A0A0A0"/>
+                        <path d="M22 38 L12 5 L42 28 Z" fill="#A0A0A0"/>
+                        <path d="M78 38 L88 5 L58 28 Z" fill="#A0A0A0"/>
+                        <path d="M22 38 L15 10 L38 28 Z" fill="#FFB6C1"/>
+                        <path d="M78 38 L85 10 L62 28 Z" fill="#FFB6C1"/>
+                        <ellipse cx="38" cy="50" rx="7" ry="8" fill="#90EE90"/>
+                        <ellipse cx="62" cy="50" rx="7" ry="8" fill="#90EE90"/>
+                        <ellipse cx="38" cy="50" rx="3" ry="7" fill="#000"/>
+                        <ellipse cx="62" cy="50" rx="3" ry="7" fill="#000"/>
+                        <path d="M50 60 L46 66 L54 66 Z" fill="#FFB6C1"/>
+                        <path d="M46 68 L50 74 L54 68" stroke="#A0A0A0" stroke-width="2" fill="none"/>
+                        <line x1="18" y1="52" x2="32" y2="50" stroke="#A0A0A0" stroke-width="1.5"/>
+                        <line x1="18" y1="58" x2="32" y2="58" stroke="#A0A0A0" stroke-width="1.5"/>
+                        <line x1="68" y1="50" x2="82" y2="52" stroke="#A0A0A0" stroke-width="1.5"/>
+                        <line x1="68" y1="58" x2="82" y2="58" stroke="#A0A0A0" stroke-width="1.5"/>
+                    </svg>
+                    <h4>Chats câlins</h4>
+                    <p>Ronrons garantis</p>
+                </div>
+                <div class="pet-card">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="48" fill="#E76F51" opacity="0.2"/>
+                        <ellipse cx="50" cy="55" rx="32" ry="26" fill="#F5DEB3"/>
+                        <ellipse cx="35" cy="40" rx="12" ry="18" fill="#F5DEB3"/>
+                        <ellipse cx="65" cy="40" rx="12" ry="18" fill="#F5DEB3"/>
+                        <ellipse cx="35" cy="42" rx="6" ry="10" fill="#FFB6C1"/>
+                        <ellipse cx="65" cy="42" rx="6" ry="10" fill="#FFB6C1"/>
+                        <circle cx="42" cy="52" r="4" fill="#000"/>
+                        <circle cx="58" cy="52" r="4" fill="#000"/>
+                        <circle cx="43" cy="51" r="1.5" fill="#fff"/>
+                        <circle cx="59" cy="51" r="1.5" fill="#fff"/>
+                        <ellipse cx="50" cy="62" rx="5" ry="3" fill="#FFB6C1"/>
+                        <path d="M45 68 Q50 72 55 68" stroke="#D2691E" stroke-width="2" fill="none"/>
+                    </svg>
+                    <h4>Chiens calmes</h4>
+                    <p>Douceur & sérénité</p>
+                </div>
+                <div class="pet-card">
+                    <svg viewBox="0 0 100 100" fill="none">
+                        <circle cx="50" cy="50" r="48" fill="#264653" opacity="0.15"/>
+                        <ellipse cx="50" cy="55" rx="26" ry="20" fill="#1a1a1a"/>
+                        <path d="M24 38 L14 5 L44 28 Z" fill="#1a1a1a"/>
+                        <path d="M76 38 L86 5 L56 28 Z" fill="#1a1a1a"/>
+                        <ellipse cx="38" cy="48" rx="8" ry="10" fill="#FFD700"/>
+                        <ellipse cx="62" cy="48" rx="8" ry="10" fill="#FFD700"/>
+                        <ellipse cx="38" cy="48" rx="3" ry="8" fill="#000"/>
+                        <ellipse cx="62" cy="48" rx="3" ry="8" fill="#000"/>
+                        <ellipse cx="50" cy="60" rx="4" ry="2" fill="#FFB6C1"/>
+                        <path d="M46 64 L50 70 L54 64" stroke="#1a1a1a" stroke-width="2" fill="none"/>
+                    </svg>
+                    <h4>Chats mystérieux</h4>
+                    <p>Élégance féline</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="apropos" class="section-padding about">
+        <!-- Décor -->
+        <svg class="about-deco" viewBox="0 0 200 200" fill="#2A9D8F">
+            <path d="M100 20 C130 20 150 50 150 85 C150 120 130 135 100 135 C70 135 50 120 50 85 C50 50 70 20 100 20"/>
+            <circle cx="60" cy="160" r="25"/>
+            <circle cx="140" cy="160" r="25"/>
+            <circle cx="60" cy="195" r="20"/>
+            <circle cx="140" cy="195" r="20"/>
+        </svg>
+        
+        <div class="container">
+            <div class="about-img">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=450&fit=crop" alt="La petsitter avec un chien">
+                <!-- Badge avec patte -->
+                <div class="about-img-badge">
+                    <svg viewBox="0 0 512 512" fill="#264653">
+                        <path d="M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5v1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3v-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z"/>
+                    </svg>
+                </div>
+            </div>
+            <div class="about-content">
+                <h2 class="section-title">Laissez-moi vous présenter Nath</h2>
+                <div class="about-tags">
+                    <span class="tag">+5 ans d'expérience</span>
+                    <span class="tag">Certifiée Premier Secours</span>
+                    <span class="tag">Assurée</span>
+                </div>
+                <p style="margin-bottom: 15px;">
+                    Bonjour ! Passionnée par les animaux depuis toujours, j'ai transformé mon amour pour les bêtes en métier. Mon objectif n'est pas seulement de "surveiller" votre animal, mais de lui apporter de la joie et de la compagnie.
+                </p>
+                <p style="margin-bottom: 25px;">
+                    Qu'il s'agisse d'un chiot plein d'énergie ou d'un chat senior needing douceur, je saurai m'adapter à son caractère. J'envoie régulièrement des photos et vidéos pour que vous ne manquiez aucun moment mignon.
+                </p>
+                <div style="display: flex; gap: 40px;">
+                    <div>
+                        <h4 style="font-size: 2rem; color: var(--primary);">150+</h4>
+                        <span>Animaux gardés</span>
+                    </div>
+                    <div>
+                        <h4 style="font-size: 2rem; color: var(--primary);">100%</h4>
+                        <span>Clients satisfaits</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="tarifs" class="section-padding pricing-section">
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Mes Tarifs</h2>
+                <p class="section-subtitle">Des prix transparents et adaptés à la durée de garde.</p>
+            </div>
+
+            <div class="pricing-grid">
+                <!-- Formulaire Promenade -->
+                <div class="price-card">
+                    <!-- Icône décorative -->
+                    <svg class="price-card-icon" viewBox="0 0 100 100" fill="#2A9D8F">
+                        <circle cx="50" cy="40" r="25"/>
+                        <ellipse cx="30" cy="70" rx="12" ry="15"/>
+                        <ellipse cx="70" cy="70" rx="12" ry="15"/>
+                        <ellipse cx="30" cy="92" rx="10" ry="12"/>
+                        <ellipse cx="70" cy="92" rx="10" ry="12"/>
+                    </svg>
+                    <div class="price-header">
+                        <h3>La Promenade</h3>
+                        <div class="price">15€ <span>/ balade</span></div>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Durée : 30 minutes</li>
+                        <li><i class="fa-solid fa-check"></i> Zone de proximité</li>
+                        <li><i class="fa-solid fa-check"></i> Rapport post-balade</li>
+                        <li><i class="fa-solid fa-check"></i> Eau fournie</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; text-align: center;">Choisir</a>
+                </div>
+
+                <!-- Formulaire Garde Journée -->
+                <div class="price-card popular">
+                    <div class="popular-badge">Le plus choisi</div>
+                    <svg class="price-card-icon" viewBox="0 0 100 100" fill="#2A9D8F">
+                        <circle cx="50" cy="40" r="25"/>
+                        <ellipse cx="30" cy="70" rx="12" ry="15"/>
+                        <ellipse cx="70" cy="70" rx="12" ry="15"/>
+                        <ellipse cx="30" cy="92" rx="10" ry="12"/>
+                        <ellipse cx="70" cy="92" rx="10" ry="12"/>
+                    </svg>
+                    <div class="price-header">
+                        <h3>La Journée complète</h3>
+                        <div class="price">35€ <span>/ jour</span></div>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> 2 passages dans la journée</li>
+                        <li><i class="fa-solid fa-check"></i> Promenades incluses</li>
+                        <li><i class="fa-solid fa-check"></i> Nourriture & Eau</li>
+                        <li><i class="fa-solid fa-check"></i> Jeux & Câlins</li>
+                        <li><i class="fa-solid fa-check"></i> Photos/Videos quotidiennes</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-secondary" style="width: 100%; text-align: center;">Choisir</a>
+                </div>
+
+                <!-- Formulaire Week-end -->
+                <div class="price-card">
+                    <svg class="price-card-icon" viewBox="0 0 100 100" fill="#2A9D8F">
+                        <circle cx="50" cy="40" r="25"/>
+                        <ellipse cx="30" cy="70" rx="12" ry="15"/>
+                        <ellipse cx="70" cy="70" rx="12" ry="15"/>
+                        <ellipse cx="30" cy="92" rx="10" ry="12"/>
+                        <ellipse cx="70" cy="92" rx="10" ry="12"/>
+                    </svg>
+                    <div class="price-header">
+                        <h3>Week-end / Férié</h3>
+                        <div class="price">80€ <span>/ 2 jours</span></div>
+                    </div>
+                    <ul class="price-features">
+                        <li><i class="fa-solid fa-check"></i> Garde le matin et soir</li>
+                        <li><i class="fa-solid fa-check"></i> disponibilité 24h/24 (urgence)</li>
+                        <li><i class="fa-solid fa-check"></i> Maintien du rythme</li>
+                        <li><i class="fa-solid fa-check"></i> Arrosage plantes inclus</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary" style="width: 100%; text-align: center;">Choisir</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="section-padding testimonials">
+        <!-- Décor -->
+        <svg class="testimonials-deco" viewBox="0 0 200 200" fill="#264653">
+            <ellipse cx="100" cy="110" rx="80" ry="65" />
+            <path d="M30 70 L10 20 L60 55 Z"/>
+            <path d="M170 70 L190 20 L140 55 Z"/>
+        </svg>
+        
+        <div class="container">
+            <div class="text-center">
+                <h2 class="section-title">Avis des propriétaires</h2>
+                <p class="section-subtitle">Ce qu'ils pensent de mes services.</p>
+            </div>
+            <div class="testimonial-grid">
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p>"Nath a pris soin de Max comme s'il était le sien. J'étais inquiet de le laisser, mais les photos quotidiennes m'ont rassuré. Super service !"</p>
+                    <div class="client-info">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" class="client-avatar" alt="Client">
+                        <div>
+                            <strong>Thomas D.</strong>
+                            <div class="pet-type-badge">
+                                <svg viewBox="0 0 100 100" fill="#264653">
+                                    <ellipse cx="50" cy="60" rx="30" ry="25"/>
+                                    <path d="M20 45 Q10 25 25 35"/>
+                                    <path d="M80 45 Q90 25 75 35"/>
+                                </svg>
+                                Golden Retriever
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p>"Une douceur incroyable avec minou. Elle a géré son traitement sans problème. Je recommande vivement pour les chats."</p>
+                    <div class="client-info">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" class="client-avatar" alt="Client">
+                        <div>
+                            <strong>Marie L.</strong>
+                            <div class="pet-type-badge">
+                                <svg viewBox="0 0 100 100" fill="#264653">
+                                    <ellipse cx="50" cy="60" rx="25" ry="20"/>
+                                    <path d="M25 45 L15 15 L40 35 Z"/>
+                                    <path d="M75 45 L85 15 L60 35 Z"/>
+                                </svg>
+                                Chat Siamois
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <i class="fa-solid fa-quote-right quote-icon"></i>
+                    <p>"Ponctuelle et sérieuse. Nos deux chiens étaient fatigués mais heureux à notre retour. Nous ferons appel à elle à nouveau."</p>
+                    <div class="client-info">
+                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&h=100&fit=crop&crop=face" class="client-avatar" alt="Client">
+                        <div>
+                            <strong>Julie & Marc</strong>
+                            <div class="pet-type-badge">
+                                <svg viewBox="0 0 100 100" fill="#264653">
+                                    <ellipse cx="50" cy="60" rx="30" ry="25"/>
+                                    <path d="M20 45 Q10 25 25 35"/>
+                                    <path d="M80 45 Q90 25 75 35"/>
+                                </svg>
+                                Rex & Bella
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section-padding contact-section">
+        <!-- Décor -->
+        <svg class="contact-deco" viewBox="0 0 100 100" fill="#2A9D8F">
+            <ellipse cx="50" cy="55" rx="35" ry="30"/>
+            <path d="M15 40 Q5 15 25 28"/>
+            <path d="M85 40 Q95 15 75 28"/>
+            <circle cx="35" cy="48" r="5"/>
+            <circle cx="65" cy="48" r="5"/>
+            <ellipse cx="50" cy="60" rx="6" ry="4"/>
+        </svg>
+        
+        <div class="container">
+            <div class="contact-container">
+                <div class="contact-info">
+                    <h3>Prêt à confier votre compagnon ?</h3>
+                    <p style="margin-bottom: 30px;">Remplissez le formulaire et je vous recontacterai sous 24h pour organiser une première rencontre (gratuite et sans engagement).</p>
+                    
+                    <div class="info-item">
+                        <i class="fa-solid fa-phone"></i>
+                        <span>06 82 91 16 72</span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-envelope"></i>
+                        <span><a href="mailto:info@avospapattes-by-nath.fr">info@avospapattes-by-nath.fr</a></span>
+                    </div>
+                    <div class="info-item">
+                        <i class="fa-solid fa-location-dot"></i>
+                        <div>
+                            <span>7 rue Pierre de Coubertin,<br>Oberhausbergen (67)</span>
+                            <div style="font-size: 0.9em; opacity: 0.8; margin-top: 5px;">Zone de service : Rayon de 5 km</div>
+                        </div>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-clock"></i>
+                        <span>Disponible 7j/7 - Réponse sous 24h</span>
+                    </div>
+
+                    <div class="info-item">
+                        <i class="fa-solid fa-tags"></i>
+                        <div>
+                            <span>Tarifs préférentiels pour les longs séjours<br>Devis gratuit personnalisé</span>
+                        </div>
+                    </div>
+
+                    <div class="social-icons" style="margin-top: 30px;">
+                        <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                    </div>
+                </div>
+
+                <div class="contact-form">
+                    <form name="contact-avospapattes">
+                        <div class="form-group">
+                            <label for="name">Votre Nom</label>
+                            <input type="text" id="name" name="name" class="form-control" placeholder="Jean Dupont" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Votre Email</label>
+                            <input type="email" id="email" name="email" class="form-control" placeholder="jean@email.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">Téléphone</label>
+                            <input type="tel" id="phone" name="phone" class="form-control" placeholder="06 82 91 16 72">
+                        </div>
+                        <div class="form-group">
+                            <label for="animal">Nom de l'animal</label>
+                            <input type="text" id="animal" name="animal" class="form-control" placeholder="Ex: Rex" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="service">Service souhaité</label>
+                            <select id="service" name="service" class="form-control">
+                                <option value="Garde à domicile">Garde à domicile</option>
+                                <option value="Promenade">Promenade</option>
+                                <option value="Visite pour chat">Visite pour chat</option>
+                                <option value="Week-end / Férié">Week-end / Férié</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Message</label>
+                            <textarea id="message" name="message" rows="4" class="form-control" placeholder="Dites-m'en plus sur vos besoins..."></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-secondary" style="width: 100%;">Envoyer la demande</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <!-- Décor animaux footer -->
+        <div class="footer-pets">
+            <svg viewBox="0 0 100 100" fill="white">
+                <ellipse cx="50" cy="55" rx="30" ry="25"/>
+                <path d="M20 40 Q10 20 25 30"/>
+                <path d="M80 40 Q90 20 75 30"/>
+            </svg>
+            <svg viewBox="0 0 100 100" fill="white">
+                <ellipse cx="50" cy="55" rx="25" ry="20"/>
+                <path d="M25 40 L15 10 L40 30 Z"/>
+                <path d="M75 40 L85 10 L60 30 Z"/>
+            </svg>
+        </div>
+        
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-col">
+                    <a href="#" class="logo" style="color: white; margin-bottom: 20px; display:inline-block;">
+                        <i class="fa-solid fa-paw" style="color: var(--secondary);"></i> À vos papattes by Nath
+                    </a>
+                    <p>Le bien-être de votre animal est ma priorité absolue.</p>
+                </div>
+                <div class="footer-col">
+                    <h4>Liens Rapides</h4>
+                    <ul class="footer-links">
+                        <li><a href="#accueil">Accueil</a></li>
+                        <li><a href="#services">Services</a></li>
+                        <li><a href="#tarifs">Tarifs</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="mentions-legales.html">Mentions légales</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Horaires</h4>
+                    <ul class="footer-links">
+                        <li>Lun - Dim : 08h - 20h</li>
+                        <li>Service 7j/7</li>
+                        <li>Jours fériés : Ouvert</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 À vos papattes by Nath. Tous droits réservés. Avec ❤️ pour les animaux.
+            </div>
+        </div>
+    </footer>
+
+    <!-- EmailJS SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // ✅ Configuration Firebase (Identique à la version précédente)
+        const firebaseConfig = {
+            apiKey: "AIzaSyCXS5iv36-mu-qsKeU8R1lLkeutqI9qPgo",
+            authDomain: "patpatouche-f728f.firebaseapp.com",
+            projectId: "patpatouche-f728f",
+            storageBucket: "patpatouche-f728f.firebasestorage.app",
+            messagingSenderId: "81686257988",
+            appId: "1:81686257988:web:de3da6193290a053cbf711"
+        };
+
+        // ✅ Configuration EmailJS (Identique à la version précédente)
+        const EMAILJS_PUBLIC_KEY = "7qFu3BHzgXhlsbSaZ";
+        const EMAILJS_SERVICE_ID = "service_8ysygbo";
+        const EMAILJS_TEMPLATE_ID = "template_imm34hv";
+
+        // Initialiser Firebase
+        const app = initializeApp(firebaseConfig);
+        const db = getFirestore(app);
+
+        // Initialiser EmailJS
+        emailjs.init(EMAILJS_PUBLIC_KEY);
+
+        // Gérer l'envoi du formulaire (Nom mis à jour)
+        const form = document.querySelector('form[name="contact-avospapattes"]');
+        
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const submitBtn = form.querySelector('button[type="submit"]');
+            const originalText = submitBtn.textContent;
+            submitBtn.textContent = 'Envoi en cours...';
+            submitBtn.disabled = true;
+
+            try {
+                // Collecter les données
+                const formData = {
+                    name: form.querySelector('#name').value,
+                    email: form.querySelector('#email').value,
+                    phone: form.querySelector('#phone').value || '',
+                    animal: form.querySelector('#animal').value,
+                    service: form.querySelector('#service').value,
+                    message: form.querySelector('#message').value || '',
+                    createdAt: serverTimestamp(),
+                    status: 'nouveau'
+                };
+
+                // 1. Envoyer à Firebase
+                await addDoc(collection(db, "demandes"), formData);
+
+                // 2. Envoyer notification email via EmailJS
+                await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
+                    name: formData.name,
+                    email: formData.email,
+                    phone: formData.phone || 'Non renseigné',
+                    animal: formData.animal,
+                    service: formData.service,
+                    message: formData.message || 'Aucun message'
+                });
+
+                // Succès
+                form.innerHTML = `
+                    <div style="text-align: center; padding: 40px 20px;">
+                        <div style="font-size: 4rem; margin-bottom: 20px;">🐾</div>
+                        <h3 style="color: var(--primary); margin-bottom: 15px;">Merci ${formData.name} !</h3>
+                        <p style="color: var(--text-gray);">Votre demande a bien été envoyée.<br>Je vous recontacterai sous 24h.</p>
+                    </div>
+                `;
+
+            } catch (error) {
+                console.error("Erreur:", error);
+                submitBtn.textContent = originalText;
+                submitBtn.disabled = false;
+                alert("Erreur lors de l'envoi. Veuillez réessayer.");
+            }
+        });
+    </script>
+
+    <!-- Scripts pour l'interactivité minimale -->
+    <script>
+        // Menu Burger Mobile
+        const menuBtn = document.getElementById('menuBtn');
+        const navLinks = document.getElementById('navLinks');
+        const links = document.querySelectorAll('.nav-links a');
+
+        menuBtn.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+            
+            // Change l'icône du burger
+            const icon = menuBtn.querySelector('i');
+            if (navLinks.classList.contains('active')) {
+                icon.classList.remove('fa-bars');
+                icon.classList.add('fa-xmark');
+            } else {
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            }
+        });
+
+        // Fermer le menu mobile lors du clic sur un lien
+        links.forEach(link => {
+            link.addEventListener('click', () => {
+                navLinks.classList.remove('active');
+                const icon = menuBtn.querySelector('i');
+                icon.classList.remove('fa-xmark');
+                icon.classList.add('fa-bars');
+            });
+        });
+
+        // Changement de style du header au scroll
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 50) {
+                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
+            } else {
+                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.05)';
+            }
+        });
+
+        // ===== THEME TOGGLE (Mode sombre) =====
+        const themeToggle = document.getElementById('themeToggle');
+        
+        // Charger le thème sauvegardé
+        function loadTheme() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.documentElement.setAttribute('data-theme', savedTheme);
+            updateToggleIcon(savedTheme);
+        }
+
+        // Mettre à jour l'icône du bouton
+        function updateToggleIcon(theme) {
+            const icon = themeToggle.querySelector('i');
+            if (theme === 'dark') {
+                icon.classList.remove('fa-moon');
+                icon.classList.add('fa-sun');
+            } else {
+                icon.classList.remove('fa-sun');
+                icon.classList.add('fa-moon');
+            }
+        }
+
+        // Basculer le thème
+        themeToggle.addEventListener('click', () => {
+            const currentTheme = document.documentElement.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            
+            document.documentElement.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+            updateToggleIcon(newTheme);
+        });
+
+        // Charger le thème au démarrage
+        loadTheme();
+    </script>
+</body>
+</html>
