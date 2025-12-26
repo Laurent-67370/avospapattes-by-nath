@@ -27,6 +27,16 @@
     <!-- Import d'une librairie d'icônes légère (FontAwesome CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
+    <!-- Leaflet CSS pour la carte interactive -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY=" crossorigin=""/>
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+    <meta name="theme-color" content="#2A9D8F">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="apple-mobile-web-app-title" content="Papattes">
+
     <!-- Styles personnalisés -->
     <link rel="stylesheet" href="css/main.css">
 </head>
@@ -412,6 +422,71 @@
         </div>
     </section>
 
+    <!-- Gallery Section -->
+    <section class="section-padding gallery-section">
+        <div class="container">
+            <h2 class="section-title text-center">📸 Galerie Photos</h2>
+            <p class="section-subtitle text-center">Quelques moments de bonheur partagés avec vos compagnons</p>
+
+            <div class="gallery-grid">
+                <div class="gallery-item" data-caption="Rex en pleine partie de jeu au parc">
+                    <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=400&fit=crop" alt="Golden Retriever jouant dans un parc verdoyant" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>🐕 Rex</h4>
+                        <p>Golden Retriever - Promenade matinale</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-caption="Minou profitant d'une sieste ensoleillée">
+                    <img src="https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?w=600&h=400&fit=crop" alt="Chat roux se prélassant au soleil" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>🐱 Minou</h4>
+                        <p>Chat Européen - Moment câlin</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-caption="Bella et son meilleur ami lors d'une ballade">
+                    <img src="https://images.unsplash.com/photo-1558788353-f76d92427f16?w=600&h=400&fit=crop" alt="Deux chiens jouant ensemble dans un champ" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>🐕🐕 Bella & Max</h4>
+                        <p>Meilleurs amis - Garde simultanée</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-caption="Charlie découvrant de nouveaux jouets">
+                    <img src="https://images.unsplash.com/photo-1552053831-71594a27632d?w=600&h=400&fit=crop" alt="Chien heureux jouant avec ses jouets" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>🎾 Charlie</h4>
+                        <p>Labrador - Session de jeu</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-caption="Luna en train de ronronner sur le canapé">
+                    <img src="https://images.unsplash.com/photo-1513360371669-4adf3dd7dff8?w=600&h=400&fit=crop" alt="Chat tigré relaxant confortablement" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>😻 Luna</h4>
+                        <p>Chat Tigré - Visite quotidienne</p>
+                    </div>
+                </div>
+
+                <div class="gallery-item" data-caption="Rocky après sa balade quotidienne">
+                    <img src="https://images.unsplash.com/photo-1576201836106-db1758fd1c97?w=600&h=400&fit=crop" alt="Chien heureux après une promenade" loading="lazy">
+                    <div class="gallery-overlay">
+                        <h4>🐕 Rocky</h4>
+                        <p>Berger Allemand - Retour de promenade</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Visualiseur d'image en grand format">
+        <button class="lightbox-close" id="lightbox-close" aria-label="Fermer le visualiseur d'image">&times;</button>
+        <img class="lightbox-content" id="lightbox-img" alt="">
+        <div class="lightbox-caption" id="lightbox-caption"></div>
+    </div>
+
     <!-- About Section -->
     <section id="apropos" class="section-padding about">
         <!-- Décor -->
@@ -609,6 +684,31 @@
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Service Area Map Section -->
+    <section class="section-padding map-section">
+        <div class="container">
+            <h2 class="section-title text-center">📍 Ma Zone d'Intervention</h2>
+            <p class="section-subtitle text-center">Je me déplace dans un rayon de 5 km autour d'Oberhausbergen</p>
+
+            <div class="map-container">
+                <div id="service-map" aria-label="Carte interactive de la zone de service"></div>
+                <div class="map-info">
+                    <h3>🗺️ Villes couvertes</h3>
+                    <ul class="cities-list">
+                        <li><i class="fa-solid fa-check"></i> Oberhausbergen</li>
+                        <li><i class="fa-solid fa-check"></i> Strasbourg (quartiers ouest)</li>
+                        <li><i class="fa-solid fa-check"></i> Schiltigheim</li>
+                        <li><i class="fa-solid fa-check"></i> Bischheim</li>
+                        <li><i class="fa-solid fa-check"></i> Hoenheim</li>
+                        <li><i class="fa-solid fa-check"></i> Mittelhausbergen</li>
+                        <li><i class="fa-solid fa-check"></i> Niederhausbergen</li>
+                    </ul>
+                    <p class="map-note"><strong>📞 Hors zone ?</strong> Contactez-moi, je peux étudier votre demande !</p>
                 </div>
             </div>
         </div>
@@ -866,7 +966,26 @@
     <!-- EmailJS SDK (requis pour firebase-handler.js) -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
 
+    <!-- Leaflet JS pour la carte interactive -->
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo=" crossorigin=""></script>
+
     <!-- Application principale -->
     <script type="module" src="js/app.js"></script>
+
+    <!-- Service Worker Registration -->
+    <script>
+        // Enregistrer le service worker pour la PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('/sw.js')
+                    .then((registration) => {
+                        console.log('✅ Service Worker enregistré avec succès:', registration.scope);
+                    })
+                    .catch((error) => {
+                        console.log('❌ Échec de l\'enregistrement du Service Worker:', error);
+                    });
+            });
+        }
+    </script>
 </body>
 </html>

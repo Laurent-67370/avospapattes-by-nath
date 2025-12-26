@@ -1,0 +1,23 @@
+{
+  "name": "À vos papattes by Nath - Pet Sitting",
+  "short_name": "Papattes",
+  "description": "Service de garde d'animaux et promenade à Oberhausbergen. Nath s'occupe de vos chiens et chats avec amour.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F9F9",
+  "theme_color": "#2A9D8F",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["lifestyle", "business"],
+  "lang": "fr-FR",
+  "dir": "ltr",
+  "scope": "/",
+  "screenshots": []
+}
