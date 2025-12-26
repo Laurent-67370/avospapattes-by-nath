@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>À vos papattes by Nath - Garderie & Promenade pour animaux</title>
+
+    <!-- Meta SEO -->
+    <meta name="description" content="Service de garde d'animaux et promenade à Oberhausbergen (67). Nath s'occupe de vos chiens et chats avec amour. Rayon 5 km autour de Strasbourg.">
+    <meta name="keywords" content="pet sitting, garde animaux, promenade chien, cat sitting, Oberhausbergen, Strasbourg, Alsace, garde à domicile">
+    <meta name="author" content="Nathalie - À vos papattes">
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="À vos papattes by Nath - Pet Sitting Oberhausbergen">
+    <meta property="og:description" content="Garde d'animaux professionnelle à domicile, promenades, visites pour chats. Service 7j/7 dans un rayon de 5 km.">
+    <meta property="og:url" content="https://petsitter-avospapattes-by-nath.netlify.app/">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="À vos papattes by Nath - Pet Sitting">
+
     <!-- Import des polices Google Fonts pour un look moderne et amical -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -11,996 +27,33 @@
     <!-- Import d'une librairie d'icônes légère (FontAwesome CDN) -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 
-    <style>
-        /* --- VARIABLES CSS & RESET --- */
-        :root {
-            --primary: #2A9D8F;       /* Vert d'eau rassurant */
-            --primary-dark: #21867a;
-            --secondary: #E9C46A;     /* Jaune doux */
-            --accent: #E76F51;        /* Terracotta chaleureux */
-            --bg-light: #F4F9F9;      /* Fond très clair */
-            --bg-white: #FFFFFF;
-            --text-dark: #264653;     /* Texte principal */
-            --text-gray: #666666;
-            --radius: 16px;           /* Coins arrondis "friendly" */
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
-            --container-width: 1200px;
-        }
-
-        /* Mode sombre */
-        [data-theme="dark"] {
-            --bg-light: #1a1a2e;
-            --bg-white: #16213e;
-            --text-dark: #eaeaea;
-            --text-gray: #b0b0b0;
-            --shadow: 0 10px 30px rgba(0,0,0,0.3);
-        }
-
-        [data-theme="dark"] .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-
-        [data-theme="dark"] .service-card,
-        [data-theme="dark"] .price-card,
-        [data-theme="dark"] .testimonial-card,
-        [data-theme="dark"] .pet-card {
-            background: var(--bg-white);
-        }
-
-        [data-theme="dark"] footer {
-            background-color: #0f0f1a;
-        }
-
-        [data-theme="dark"] .contact-info {
-            background-color: #0f3d38;
-        }
-
-        [data-theme="dark"] .contact-container {
-            background-color: #145249;
-        }
-
-        /* Transition douce pour le changement de thème */
-        body, header, .service-card, .price-card, .testimonial-card, 
-        .pet-card, .contact-form, footer {
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* Bouton toggle thème */
-        .theme-toggle {
-            background: none;
-            border: 2px solid var(--primary);
-            border-radius: 50%;
-            width: 42px;
-            height: 42px;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-            font-size: 1.1rem;
-            transition: all 0.3s;
-            margin-right: 10px;
-        }
-
-        .theme-toggle:hover {
-            background-color: var(--primary);
-            color: white;
-            transform: rotate(20deg);
-        }
-
-        .nav-right {
-            display: flex;
-            align-items: center;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Nunito', sans-serif;
-            color: var(--text-dark);
-            background-color: var(--bg-light);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        h1, h2, h3, h4 {
-            font-family: 'Fredoka', sans-serif; /* Police aux coins arrondis */
-            font-weight: 600;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-            transition: 0.3s ease;
-        }
-
-        ul {
-            list-style: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-            border-radius: var(--radius);
-        }
-
-        /* --- LAYOUT UTILITIES --- */
-        .container {
-            width: 90%;
-            max-width: var(--container-width);
-            margin: 0 auto;
-            padding: 0 15px;
-        }
-
-        .section-padding {
-            padding: 80px 0;
-            position: relative;
-        }
-
-        .text-center { text-align: center; }
-        
-        .btn {
-            display: inline-block;
-            padding: 12px 32px;
-            border-radius: 50px;
-            font-weight: 700;
-            cursor: pointer;
-            border: none;
-            transition: transform 0.2s, box-shadow 0.2s;
-        }
-
-        .btn-primary {
-            background-color: var(--primary);
-            color: white;
-        }
-
-        .btn-primary:hover {
-            background-color: var(--primary-dark);
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(42, 157, 143, 0.4);
-        }
-
-        .btn-secondary {
-            background-color: var(--accent);
-            color: white;
-        }
-
-        .btn-secondary:hover {
-            background-color: #d65b3b;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(231, 111, 81, 0.4);
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 1rem;
-        }
-
-        .section-subtitle {
-            font-size: 1.1rem;
-            color: var(--text-gray);
-            max-width: 600px;
-            margin: 0 auto 3rem auto;
-        }
-
-        /* --- ILLUSTRATIONS SVG DÉCORATIVES --- */
-        .paw-pattern {
-            position: absolute;
-            opacity: 0.05;
-            pointer-events: none;
-        }
-
-        .floating-pet {
-            position: absolute;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        /* Animation flottante */
-        @keyframes float {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(-15px) rotate(3deg); }
-        }
-
-        @keyframes floatReverse {
-            0%, 100% { transform: translateY(0px) rotate(0deg); }
-            50% { transform: translateY(15px) rotate(-3deg); }
-        }
-
-        @keyframes pawWalk {
-            0% { opacity: 0.3; transform: scale(0.8); }
-            50% { opacity: 0.6; transform: scale(1); }
-            100% { opacity: 0.3; transform: scale(0.8); }
-        }
-
-        .float-animation {
-            animation: float 4s ease-in-out infinite;
-        }
-
-        .float-reverse-animation {
-            animation: floatReverse 5s ease-in-out infinite;
-        }
-
-        /* --- HEADER & NAV --- */
-        header {
-            background-color: var(--bg-white);
-            box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            padding: 15px 0;
-        }
-
-        nav {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Fredoka', sans-serif;
-            font-size: 1.6rem;
-            color: var(--primary-dark);
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .logo i {
-            color: var(--accent);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 30px;
-            align-items: center;
-        }
-
-        .nav-links a {
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .nav-links a:hover {
-            color: var(--primary);
-        }
-
-        .mobile-menu-btn {
-            display: none;
-            font-size: 1.5rem;
-            color: var(--text-dark);
-            cursor: pointer;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            background: linear-gradient(135deg, #fdfbfb 0%, #ebedee 100%);
-            padding: 100px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero .container {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            gap: 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero-content {
-            flex: 1;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            line-height: 1.2;
-            margin-bottom: 20px;
-            color: var(--text-dark);
-        }
-
-        .hero h1 span {
-            color: var(--primary);
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            color: var(--text-gray);
-            margin-bottom: 30px;
-            max-width: 500px;
-        }
-
-        .hero-image {
-            flex: 1;
-            position: relative;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: auto;
-            border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; /* Forme organique */
-            box-shadow: var(--shadow);
-            animation: morph 8s ease-in-out infinite;
-            object-fit: cover;
-        }
-
-        @keyframes morph {
-            0% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-            50% { border-radius: 70% 30% 30% 70% / 70% 70% 30% 30%; }
-            100% { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }
-        }
-
-        /* Décors Hero */
-        .hero-deco-cat {
-            position: absolute;
-            right: -50px;
-            bottom: 10%;
-            width: 120px;
-            opacity: 0.15;
-            animation: float 6s ease-in-out infinite;
-        }
-
-        .hero-deco-dog {
-            position: absolute;
-            left: -30px;
-            top: 20%;
-            width: 100px;
-            opacity: 0.12;
-            animation: floatReverse 5s ease-in-out infinite;
-        }
-
-        .hero-paws {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            height: 100px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%232A9D8F' opacity='0.08'%3E%3Cpath d='M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5v1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3v-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z'/%3E%3C/svg%3E");
-            background-size: 50px;
-            background-repeat: repeat-x;
-            opacity: 0.5;
-        }
-
-        /* --- FEATURES / SERVICES --- */
-        .services-section {
-            position: relative;
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .service-card {
-            background: var(--bg-white);
-            padding: 40px 30px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            text-align: center;
-            transition: transform 0.3s ease;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .service-card::before {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 100px;
-            height: 100px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='%232A9D8F' opacity='0.05'%3E%3Cpath d='M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5v1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3v-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z'/%3E%3C/svg%3E");
-            background-size: contain;
-            opacity: 0;
-            transition: opacity 0.3s;
-        }
-
-        .service-card:hover::before {
-            opacity: 1;
-        }
-
-        .service-card:hover {
-            transform: translateY(-10px);
-        }
-
-        .icon-box {
-            width: 80px;
-            height: 80px;
-            background-color: rgba(42, 157, 143, 0.1);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px auto;
-            color: var(--primary);
-            font-size: 2rem;
-        }
-
-        .service-card h3 {
-            margin-bottom: 15px;
-            font-size: 1.5rem;
-        }
-
-        /* Illustration décorative entre les services */
-        .services-deco {
-            position: absolute;
-            width: 150px;
-            opacity: 0.08;
-            z-index: 1;
-        }
-
-        .services-deco-left {
-            left: -50px;
-            top: 50%;
-            transform: translateY(-50%);
-        }
-
-        .services-deco-right {
-            right: -50px;
-            bottom: 20%;
-        }
-
-        /* --- PETS GALLERY SECTION --- */
-        .pets-gallery {
-            background: linear-gradient(180deg, var(--bg-light) 0%, var(--bg-white) 100%);
-            padding: 60px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pets-strip {
-            display: flex;
-            gap: 30px;
-            animation: scroll 30s linear infinite;
-        }
-
-        @keyframes scroll {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
-        }
-
-        .pet-illustration {
-            flex-shrink: 0;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background: var(--bg-white);
-            border-radius: 50%;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.08);
-            padding: 20px;
-        }
-
-        .pet-illustration svg {
-            width: 100%;
-            height: 100%;
-        }
-
-        /* --- ABOUT --- */
-        .about {
-            background-color: var(--bg-white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .about .container {
-            display: flex;
-            align-items: center;
-            gap: 50px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .about-img {
-            flex: 1;
-            position: relative;
-        }
-
-        .about-img img {
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-        }
-
-        /* Badge décoratif sur l'image */
-        .about-img-badge {
-            position: absolute;
-            bottom: -20px;
-            right: -20px;
-            width: 100px;
-            height: 100px;
-            background: var(--secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: var(--shadow);
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .about-img-badge svg {
-            width: 60px;
-            height: 60px;
-        }
-
-        .about-content {
-            flex: 1;
-        }
-
-        .about-tags {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .tag {
-            background-color: var(--secondary);
-            color: var(--text-dark);
-            padding: 5px 15px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        /* Décor about */
-        .about-deco {
-            position: absolute;
-            right: 5%;
-            top: 10%;
-            width: 200px;
-            opacity: 0.06;
-        }
-
-        /* --- PRICING --- */
-        .pricing-section {
-            position: relative;
-        }
-
-        .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            align-items: start;
-            position: relative;
-            z-index: 2;
-        }
-
-        .price-card {
-            background: var(--bg-white);
-            padding: 40px;
-            border-radius: var(--radius);
-            box-shadow: var(--shadow);
-            position: relative;
-            border: 2px solid transparent;
-        }
-
-        .price-card.popular {
-            border-color: var(--primary);
-            transform: scale(1.05);
-            z-index: 2;
-        }
-
-        .popular-badge {
-            position: absolute;
-            top: -15px;
-            left: 50%;
-            transform: translateX(-50%);
-            background-color: var(--primary);
-            color: white;
-            padding: 8px 20px;
-            border-radius: 20px;
-            font-size: 0.9rem;
-            font-weight: 700;
-        }
-
-        .price-header h3 {
-            font-size: 1.5rem;
-            margin-bottom: 10px;
-        }
-
-        .price {
-            font-size: 2.5rem;
-            font-family: 'Fredoka', sans-serif;
-            color: var(--primary-dark);
-            font-weight: 700;
-        }
-
-        .price span {
-            font-size: 1rem;
-            color: var(--text-gray);
-            font-family: 'Nunito', sans-serif;
-            font-weight: 400;
-        }
-
-        .price-features {
-            margin: 30px 0;
-            text-align: left;
-        }
-
-        .price-features li {
-            margin-bottom: 12px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .price-features i {
-            color: var(--primary);
-        }
-
-        /* Illustration Prix */
-        .price-card-icon {
-            position: absolute;
-            top: 15px;
-            right: 15px;
-            width: 50px;
-            height: 50px;
-            opacity: 0.15;
-        }
-
-        /* --- TESTIMONIALS --- */
-        .testimonials {
-            background-color: var(--bg-white);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .testimonial-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .testimonial-card {
-            background-color: var(--bg-light);
-            padding: 30px;
-            border-radius: var(--radius);
-            position: relative;
-        }
-
-        .quote-icon {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 2rem;
-            color: #dceceb;
-        }
-
-        .client-info {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .client-avatar {
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            object-fit: cover;
-        }
-
-        /* Pet type badge */
-        .pet-type-badge {
-            display: inline-flex;
-            align-items: center;
-            gap: 5px;
-            background: var(--secondary);
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 0.75rem;
-            font-weight: 700;
-            margin-top: 5px;
-        }
-
-        .pet-type-badge svg {
-            width: 14px;
-            height: 14px;
-        }
-
-        /* Décor témoignages */
-        .testimonials-deco {
-            position: absolute;
-            left: -80px;
-            bottom: 10%;
-            width: 200px;
-            opacity: 0.05;
-        }
-
-        /* --- CUTE PETS SECTION --- */
-        .cute-pets {
-            padding: 80px 0;
-            background: linear-gradient(135deg, #E9C46A15 0%, #2A9D8F10 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .pets-showcase {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .pet-card {
-            background: var(--bg-white);
-            padding: 30px;
-            border-radius: 30px;
-            text-align: center;
-            box-shadow: var(--shadow);
-            transition: transform 0.3s;
-            width: 200px;
-        }
-
-        .pet-card:hover {
-            transform: translateY(-10px) rotate(2deg);
-        }
-
-        .pet-card svg {
-            width: 100px;
-            height: 100px;
-            margin-bottom: 15px;
-        }
-
-        .pet-card h4 {
-            color: var(--primary-dark);
-            margin-bottom: 5px;
-        }
-
-        .pet-card p {
-            font-size: 0.9rem;
-            color: var(--text-gray);
-        }
-
-        /* --- CONTACT --- */
-        .contact-section {
-            position: relative;
-        }
-
-        .contact-container {
-            background-color: var(--primary);
-            border-radius: var(--radius);
-            overflow: hidden;
-            display: flex;
-            box-shadow: var(--shadow);
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-info {
-            background-color: var(--primary-dark);
-            color: white;
-            padding: 50px;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .contact-info::after {
-            content: '';
-            position: absolute;
-            bottom: -30px;
-            right: -30px;
-            width: 150px;
-            height: 150px;
-            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512' fill='white' opacity='0.1'%3E%3Cpath d='M226.5 92.9c14.3 42.9-.3 86.2-32.6 96.8s-70.1-15.6-84.4-58.5s.3-86.2 32.6-96.8s70.1 15.6 84.4 58.5zM100.4 198.6c18.9 32.4 14.3 70.1-10.2 84.1s-59.7-.9-78.5-33.3S-2.7 179.3 21.8 165.3s59.7 .9 78.5 33.3zM69.2 401.2C121.6 259.9 214.7 224 256 224s134.4 35.9 186.8 177.2c3.6 9.7 5.2 20.1 5.2 30.5v1.6c0 25.8-20.9 46.7-46.7 46.7c-11.5 0-22.9-1.4-34-4.2l-88-22c-15.3-3.8-31.3-3.8-46.6 0l-88 22c-11.1 2.8-22.5 4.2-34 4.2C84.9 480 64 459.1 64 433.3v-1.6c0-10.4 1.6-20.8 5.2-30.5zM421.8 282.7c-24.5-14-29.1-51.7-10.2-84.1s54-47.3 78.5-33.3s29.1 51.7 10.2 84.1s-54 47.3-78.5 33.3zM310.1 189.7c-32.3-10.6-46.9-53.9-32.6-96.8s52.1-69.1 84.4-58.5s46.9 53.9 32.6 96.8s-52.1 69.1-84.4 58.5z'/%3E%3C/svg%3E");
-            background-size: contain;
-        }
-
-        .contact-info h3 {
-            font-size: 2rem;
-            margin-bottom: 20px;
-        }
-
-        .info-item {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .contact-form {
-            background-color: var(--bg-white);
-            padding: 50px;
-            flex: 1.5;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-            color: var(--text-dark);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #eee;
-            border-radius: 8px;
-            font-family: inherit;
-            font-size: 1rem;
-            transition: border-color 0.3s;
-        }
-
-        .form-control:focus {
-            outline: none;
-            border-color: var(--primary);
-        }
-
-        /* Décor contact */
-        .contact-deco {
-            position: absolute;
-            right: 10%;
-            top: -60px;
-            width: 120px;
-            opacity: 0.1;
-            animation: float 4s ease-in-out infinite;
-        }
-
-        /* --- FOOTER --- */
-        footer {
-            background-color: var(--text-dark);
-            color: white;
-            padding: 50px 0 20px;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .footer-pets {
-            position: absolute;
-            top: 20px;
-            right: 10%;
-            display: flex;
-            gap: 20px;
-            opacity: 0.1;
-        }
-
-        .footer-pets svg {
-            width: 60px;
-            height: 60px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 40px;
-            margin-bottom: 40px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .footer-col h4 {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-            color: var(--secondary);
-        }
-
-        .footer-links li {
-            margin-bottom: 10px;
-        }
-
-        .footer-links a:hover {
-            color: var(--secondary);
-        }
-
-        .social-icons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .social-icons a {
-            width: 40px;
-            height: 40px;
-            background-color: rgba(255,255,255,0.1);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 50%;
-            transition: background 0.3s;
-        }
-
-        .social-icons a:hover {
-            background-color: var(--primary);
-        }
-
-        .copyright {
-            text-align: center;
-            padding-top: 20px;
-            border-top: 1px solid rgba(255,255,255,0.1);
-            font-size: 0.9rem;
-            color: #aaa;
-        }
-
-        /* --- RESPONSIVE MEDIA QUERIES --- */
-        @media (max-width: 992px) {
-            .hero h1 { font-size: 2.5rem; }
-            .hero .container { flex-direction: column-reverse; text-align: center; }
-            .hero p { margin: 0 auto 30px auto; }
-            .about .container { flex-direction: column; }
-            .price-card.popular { transform: none; }
-            .hero-deco-cat, .hero-deco-dog { display: none; }
-            .about-deco { display: none; }
-        }
-
-        @media (max-width: 768px) {
-            .mobile-menu-btn { display: block; }
-            
-            .nav-links {
-                position: fixed;
-                top: 70px;
-                left: -100%;
-                width: 100%;
-                background-color: var(--bg-white);
-                flex-direction: column;
-                padding: 40px 0;
-                box-shadow: 0 10px 10px rgba(0,0,0,0.05);
-                transition: 0.3s ease-in-out;
-            }
-
-            .nav-links.active { left: 0; }
-            
-            .contact-container { flex-direction: column; }
-            
-            .section-title { font-size: 2rem; }
-
-            .pets-showcase { gap: 20px; }
-            .pet-card { width: 150px; padding: 20px; }
-            .pet-card svg { width: 70px; height: 70px; }
-
-            .pets-strip { animation-duration: 20s; }
-            
-            .logo { font-size: 1.4rem; } /* Ajustement logo mobile */
-        }
-    </style>
+    <!-- Styles personnalisés -->
+    <link rel="stylesheet" href="css/main.css">
 </head>
 <body>
 
     <!-- Navigation -->
     <header>
         <div class="container">
-            <nav>
-                <a href="#" class="logo">
-                    <i class="fa-solid fa-paw"></i> À vos papattes by Nath
+            <nav aria-label="Navigation principale">
+                <a href="#" class="logo" aria-label="Retour à l'accueil - À vos papattes by Nath">
+                    <i class="fa-solid fa-paw" aria-hidden="true"></i> À vos papattes by Nath
                 </a>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#accueil">Accueil</a></li>
-                    <li><a href="#services">Services</a></li>
-                    <li><a href="#apropos">À propos</a></li>
-                    <li><a href="#tarifs">Tarifs</a></li>
-                    <li><a href="mentions-legales.html">Mentions légales</a></li>
-                    <li><a href="#contact" class="btn btn-primary">Réserver</a></li>
+                <ul class="nav-links" id="navLinks" role="menubar">
+                    <li role="none"><a href="#accueil" role="menuitem">Accueil</a></li>
+                    <li role="none"><a href="#services" role="menuitem">Services</a></li>
+                    <li role="none"><a href="#apropos" role="menuitem">À propos</a></li>
+                    <li role="none"><a href="#tarifs" role="menuitem">Tarifs</a></li>
+                    <li role="none"><a href="mentions-legales.html" role="menuitem">Mentions légales</a></li>
+                    <li role="none"><a href="#contact" class="btn btn-primary" role="menuitem">Réserver</a></li>
                 </ul>
                 <div class="nav-right">
-                    <button class="theme-toggle" id="themeToggle" title="Changer le thème">
-                        <i class="fa-solid fa-moon"></i>
+                    <button class="theme-toggle" id="themeToggle" aria-label="Activer le mode sombre" title="Changer le thème">
+                        <i class="fa-solid fa-moon" aria-hidden="true"></i>
                     </button>
-                    <div class="mobile-menu-btn" id="menuBtn">
-                        <i class="fa-solid fa-bars"></i>
-                    </div>
+                    <button class="mobile-menu-btn" id="menuBtn" aria-label="Ouvrir le menu de navigation" aria-expanded="false">
+                        <i class="fa-solid fa-bars" aria-hidden="true"></i>
+                    </button>
                 </div>
             </nav>
         </div>
@@ -1027,7 +80,7 @@
             </div>
             <div class="hero-image">
                 <!-- Image aléatoire chien/chat -->
-                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=600&fit=crop&crop=face" alt="Chien heureux">
+                <img src="https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=600&h=600&fit=crop&crop=face" alt="Chien golden retriever souriant dans un jardin verdoyant" loading="lazy">
             </div>
         </div>
     </section>
@@ -1372,7 +425,7 @@
         
         <div class="container">
             <div class="about-img">
-                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=450&fit=crop" alt="La petsitter avec un chien">
+                <img src="https://images.unsplash.com/photo-1548199973-03cce0bbc87b?w=600&h=450&fit=crop" alt="Nath, pet sitter professionnelle, promenant un chien joyeux dans un parc" loading="lazy">
                 <!-- Badge avec patte -->
                 <div class="about-img-badge">
                     <svg viewBox="0 0 512 512" fill="#264653">
@@ -1507,7 +560,7 @@
                     <i class="fa-solid fa-quote-right quote-icon"></i>
                     <p>"Nath a pris soin de Max comme s'il était le sien. J'étais inquiet de le laisser, mais les photos quotidiennes m'ont rassuré. Super service !"</p>
                     <div class="client-info">
-                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" class="client-avatar" alt="Client">
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face" class="client-avatar" alt="Photo de Marc, client satisfait du service de garde d'animaux" loading="lazy">
                         <div>
                             <strong>Thomas D.</strong>
                             <div class="pet-type-badge">
@@ -1525,7 +578,7 @@
                     <i class="fa-solid fa-quote-right quote-icon"></i>
                     <p>"Une douceur incroyable avec minou. Elle a géré son traitement sans problème. Je recommande vivement pour les chats."</p>
                     <div class="client-info">
-                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" class="client-avatar" alt="Client">
+                        <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&h=100&fit=crop&crop=face" class="client-avatar" alt="Photo de Sophie, cliente heureuse après une promenade de son chien" loading="lazy">
                         <div>
                             <strong>Marie L.</strong>
                             <div class="pet-type-badge">
@@ -1543,7 +596,7 @@
                     <i class="fa-solid fa-quote-right quote-icon"></i>
                     <p>"Ponctuelle et sérieuse. Nos deux chiens étaient fatigués mais heureux à notre retour. Nous ferons appel à elle à nouveau."</p>
                     <div class="client-info">
-                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&h=100&fit=crop&crop=face" class="client-avatar" alt="Client">
+                        <img src="https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?w=100&h=100&fit=crop&crop=face" class="client-avatar" alt="Photo de Thomas, utilisateur régulier du service de garde à domicile" loading="lazy">
                         <div>
                             <strong>Julie & Marc</strong>
                             <div class="pet-type-badge">
@@ -1557,6 +610,115 @@
                         </div>
                     </div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="section-padding faq-section">
+        <div class="container">
+            <h2 class="section-title text-center">❓ Questions Fréquentes</h2>
+            <p class="section-subtitle text-center">Toutes les réponses à vos questions sur nos services de garde d'animaux</p>
+
+            <div class="faq-container">
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>🐕 Quels types d'animaux acceptez-vous ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>J'accueille principalement les <strong>chiens</strong> et les <strong>chats</strong> de toutes races et tailles. Pour les NAC (Nouveaux Animaux de Compagnie) comme les lapins, cochons d'Inde ou oiseaux, contactez-moi pour discuter de vos besoins spécifiques.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>📍 Quelle est votre zone d'intervention ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Je me déplace dans un <strong>rayon de 5 km autour d'Oberhausbergen</strong> (67205), incluant Strasbourg, Schiltigheim, Bischheim, Hoenheim et environs. Pour des demandes hors zone, n'hésitez pas à me contacter.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>🏠 Comment se passe la garde à domicile ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Je viens chez vous une ou plusieurs fois par jour selon vos besoins. Je m'occupe de :</p>
+                        <ul>
+                            <li>🍽️ Repas et eau fraîche</li>
+                            <li>🎾 Jeux et câlins</li>
+                            <li>🚶 Promenade courte si besoin</li>
+                            <li>🧹 Entretien de la litière (chats)</li>
+                            <li>📸 Photos quotidiennes pour vous rassurer</li>
+                        </ul>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>⏰ Quels sont vos horaires et disponibilités ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Je suis disponible <strong>7 jours sur 7</strong>, de <strong>8h à 20h</strong>. Pour les urgences ou demandes spécifiques (horaires décalés, week-ends fériés), contactez-moi directement pour trouver une solution adaptée.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>💊 Pouvez-vous administrer des médicaments ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Oui ! J'ai l'habitude de donner des médicaments (comprimés, pipettes, injections simples). Fournissez-moi simplement les instructions de votre vétérinaire et je suivrai le traitement à la lettre.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>💳 Comment se passe le paiement ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Le paiement se fait <strong>après la prestation</strong> par :</p>
+                        <ul>
+                            <li>💶 Espèces</li>
+                            <li>💳 Virement bancaire</li>
+                            <li>📱 PayPal ou Lydia</li>
+                        </ul>
+                        <p>Un devis gratuit vous sera fourni avant toute réservation.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>📅 Faut-il réserver à l'avance ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>Pour les <strong>périodes de vacances</strong> (Noël, été, ponts), je recommande de réserver <strong>2-3 semaines à l'avance</strong>. Pour les demandes ponctuelles, je peux souvent m'adapter sous <strong>48h</strong>.</p>
+                    </div>
+                </details>
+
+                <details class="faq-item">
+                    <summary class="faq-question">
+                        <span>🐾 Que se passe-t-il lors de la première rencontre ?</span>
+                        <i class="fa-solid fa-chevron-down"></i>
+                    </summary>
+                    <div class="faq-answer">
+                        <p>La première rencontre est <strong>gratuite et sans engagement</strong>. Elle permet de :</p>
+                        <ul>
+                            <li>👋 Faire connaissance avec vous et votre animal</li>
+                            <li>🏡 Découvrir votre domicile et ses spécificités</li>
+                            <li>📝 Noter les habitudes, besoins et interdits de votre compagnon</li>
+                            <li>💬 Répondre à toutes vos questions</li>
+                        </ul>
+                    </div>
+                </details>
             </div>
         </div>
     </section>
@@ -1615,7 +777,7 @@
                 </div>
 
                 <div class="contact-form">
-                    <form name="contact-avospapattes">
+                    <form name="contact-avospapattes" aria-label="Formulaire de demande de réservation">
                         <div class="form-group">
                             <label for="name">Votre Nom</label>
                             <input type="text" id="name" name="name" class="form-control" placeholder="Jean Dupont" required>
@@ -1701,166 +863,10 @@
         </div>
     </footer>
 
-    <!-- EmailJS SDK -->
+    <!-- EmailJS SDK (requis pour firebase-handler.js) -->
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-    
-    <!-- Firebase SDK -->
-    <script type="module">
-        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-        import { getFirestore, collection, addDoc, serverTimestamp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 
-        // ✅ Configuration Firebase (Identique à la version précédente)
-        const firebaseConfig = {
-            apiKey: "AIzaSyCXS5iv36-mu-qsKeU8R1lLkeutqI9qPgo",
-            authDomain: "patpatouche-f728f.firebaseapp.com",
-            projectId: "patpatouche-f728f",
-            storageBucket: "patpatouche-f728f.firebasestorage.app",
-            messagingSenderId: "81686257988",
-            appId: "1:81686257988:web:de3da6193290a053cbf711"
-        };
-
-        // ✅ Configuration EmailJS (Identique à la version précédente)
-        const EMAILJS_PUBLIC_KEY = "7qFu3BHzgXhlsbSaZ";
-        const EMAILJS_SERVICE_ID = "service_8ysygbo";
-        const EMAILJS_TEMPLATE_ID = "template_imm34hv";
-
-        // Initialiser Firebase
-        const app = initializeApp(firebaseConfig);
-        const db = getFirestore(app);
-
-        // Initialiser EmailJS
-        emailjs.init(EMAILJS_PUBLIC_KEY);
-
-        // Gérer l'envoi du formulaire (Nom mis à jour)
-        const form = document.querySelector('form[name="contact-avospapattes"]');
-        
-        form.addEventListener('submit', async (e) => {
-            e.preventDefault();
-            
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalText = submitBtn.textContent;
-            submitBtn.textContent = 'Envoi en cours...';
-            submitBtn.disabled = true;
-
-            try {
-                // Collecter les données
-                const formData = {
-                    name: form.querySelector('#name').value,
-                    email: form.querySelector('#email').value,
-                    phone: form.querySelector('#phone').value || '',
-                    animal: form.querySelector('#animal').value,
-                    service: form.querySelector('#service').value,
-                    message: form.querySelector('#message').value || '',
-                    createdAt: serverTimestamp(),
-                    status: 'nouveau'
-                };
-
-                // 1. Envoyer à Firebase
-                await addDoc(collection(db, "demandes"), formData);
-
-                // 2. Envoyer notification email via EmailJS
-                await emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, {
-                    name: formData.name,
-                    email: formData.email,
-                    phone: formData.phone || 'Non renseigné',
-                    animal: formData.animal,
-                    service: formData.service,
-                    message: formData.message || 'Aucun message'
-                });
-
-                // Succès
-                form.innerHTML = `
-                    <div style="text-align: center; padding: 40px 20px;">
-                        <div style="font-size: 4rem; margin-bottom: 20px;">🐾</div>
-                        <h3 style="color: var(--primary); margin-bottom: 15px;">Merci ${formData.name} !</h3>
-                        <p style="color: var(--text-gray);">Votre demande a bien été envoyée.<br>Je vous recontacterai sous 24h.</p>
-                    </div>
-                `;
-
-            } catch (error) {
-                console.error("Erreur:", error);
-                submitBtn.textContent = originalText;
-                submitBtn.disabled = false;
-                alert("Erreur lors de l'envoi. Veuillez réessayer.");
-            }
-        });
-    </script>
-
-    <!-- Scripts pour l'interactivité minimale -->
-    <script>
-        // Menu Burger Mobile
-        const menuBtn = document.getElementById('menuBtn');
-        const navLinks = document.getElementById('navLinks');
-        const links = document.querySelectorAll('.nav-links a');
-
-        menuBtn.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-            
-            // Change l'icône du burger
-            const icon = menuBtn.querySelector('i');
-            if (navLinks.classList.contains('active')) {
-                icon.classList.remove('fa-bars');
-                icon.classList.add('fa-xmark');
-            } else {
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            }
-        });
-
-        // Fermer le menu mobile lors du clic sur un lien
-        links.forEach(link => {
-            link.addEventListener('click', () => {
-                navLinks.classList.remove('active');
-                const icon = menuBtn.querySelector('i');
-                icon.classList.remove('fa-xmark');
-                icon.classList.add('fa-bars');
-            });
-        });
-
-        // Changement de style du header au scroll
-        window.addEventListener('scroll', () => {
-            const header = document.querySelector('header');
-            if (window.scrollY > 50) {
-                header.style.boxShadow = '0 4px 20px rgba(0,0,0,0.1)';
-            } else {
-                header.style.boxShadow = '0 2px 15px rgba(0,0,0,0.05)';
-            }
-        });
-
-        // ===== THEME TOGGLE (Mode sombre) =====
-        const themeToggle = document.getElementById('themeToggle');
-        
-        // Charger le thème sauvegardé
-        function loadTheme() {
-            const savedTheme = localStorage.getItem('theme') || 'light';
-            document.documentElement.setAttribute('data-theme', savedTheme);
-            updateToggleIcon(savedTheme);
-        }
-
-        // Mettre à jour l'icône du bouton
-        function updateToggleIcon(theme) {
-            const icon = themeToggle.querySelector('i');
-            if (theme === 'dark') {
-                icon.classList.remove('fa-moon');
-                icon.classList.add('fa-sun');
-            } else {
-                icon.classList.remove('fa-sun');
-                icon.classList.add('fa-moon');
-            }
-        }
-
-        // Basculer le thème
-        themeToggle.addEventListener('click', () => {
-            const currentTheme = document.documentElement.getAttribute('data-theme');
-            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
-            
-            document.documentElement.setAttribute('data-theme', newTheme);
-            localStorage.setItem('theme', newTheme);
-            updateToggleIcon(newTheme);
-        });
-
-        // Charger le thème au démarrage
-        loadTheme();
-    </script>
+    <!-- Application principale -->
+    <script type="module" src="js/app.js"></script>
 </body>
 </html>
