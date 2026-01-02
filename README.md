@@ -176,8 +176,8 @@ Le Service Worker (`sw.js`) met en cache les ressources pour un fonctionnement o
 | Info | Valeur |
 |------|--------|
 | **Responsable** | Nathalie |
-| **Email** | info@avospapattes-by-nath.fr |
-| **Téléphone** | 06 82 91 16 72 |
+| **Email** | nathaliehusserei@gmail.com |
+| **Téléphone** | 06 15 42 29 50 |
 | **Adresse** | 7 rue Pierre de Coubertin, Oberhausbergen (67205) |
 | **Zone de service** | Rayon de 5 km autour d'Oberhausbergen |
 | **Villes couvertes** | Strasbourg, Schiltigheim, Bischheim, Hoenheim, Mittelhausbergen, Niederhausbergen |
@@ -424,8 +424,8 @@ Toute utilisation commerciale nécessite l'autorisation de l'auteur.
 ## 📞 Support & Contact
 
 Pour toute question technique ou suggestion :
-- 📧 Email : info@avospapattes-by-nath.fr
-- 📱 Téléphone : 06 82 91 16 72
+- 📧 Email : nathaliehusserei@gmail.com
+- 📱 Téléphone : 06 15 42 29 50
 
 ---
 
