@@ -3,7 +3,7 @@
  * Permet le fonctionnement hors ligne et améliore les performances
  */
 
-const CACHE_NAME = 'avospapattes-v2';
+const CACHE_NAME = 'avospapattes-v3';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -17,7 +17,7 @@ const urlsToCache = [
     '/js/gallery.js',
     '/manifest.json',
     '/images/logo.png',
-    '/image.png'
+    '/1767380295980.jpg'
 ];
 
 // Installation du service worker

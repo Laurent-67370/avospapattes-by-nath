@@ -2,15 +2,16 @@
         :root {
             --primary: #2A9D8F;       /* Vert d'eau rassurant */
             --primary-dark: #21867a;
-            --secondary: #EAC14D;     /* Jaune du logo "À vos papattes" */
-            --accent: #E76F51;        /* Terracotta chaleureux */
-            --logo-yellow: #EAC14D;   /* Jaune officiel du logo */
-            --bg-light: #FFFEF8;      /* Fond légèrement crème (harmonieux avec le logo) */
+            --secondary: #D9A84C;     /* Jaune doré du nouveau logo */
+            --accent: #8B5A2B;        /* Marron chaud harmonieux avec le logo */
+            --logo-yellow: #D9A84C;   /* Jaune officiel du logo */
+            --logo-brown: #3D2817;    /* Marron foncé du texte du logo */
+            --bg-light: #FFF9F0;      /* Fond légèrement crème/beige clair */
             --bg-white: #FFFFFF;
-            --text-dark: #264653;     /* Texte principal */
-            --text-gray: #666666;
+            --text-dark: #3D2817;     /* Texte principal marron foncé (cohérent avec le logo) */
+            --text-gray: #6B5847;     /* Gris tirant vers le brun */
             --radius: 16px;           /* Coins arrondis "friendly" */
-            --shadow: 0 10px 30px rgba(0,0,0,0.08);
+            --shadow: 0 10px 30px rgba(217, 168, 76, 0.12);
             --container-width: 1200px;
         }
 
@@ -259,17 +260,17 @@
             border-radius: 12px;
             object-fit: contain;
             transition: all 0.3s ease;
-            box-shadow: 0 4px 12px rgba(234, 193, 77, 0.3);
+            box-shadow: 0 4px 12px rgba(217, 168, 76, 0.3);
         }
 
         .logo-img:hover {
-            box-shadow: 0 6px 20px rgba(234, 193, 77, 0.5);
+            box-shadow: 0 6px 20px rgba(217, 168, 76, 0.5);
         }
 
         .logo-text {
             font-weight: 600;
             white-space: nowrap;
-            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent) 100%);
+            background: linear-gradient(135deg, var(--logo-brown) 0%, var(--accent) 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
