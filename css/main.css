@@ -238,11 +238,35 @@
             color: var(--primary-dark);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
+            transition: transform 0.3s ease;
         }
 
-        .logo i {
-            color: var(--accent);
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 50%;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+
+        .logo-text {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 40px;
+            }
+
+            .logo-text {
+                display: none;
+            }
         }
 
         .nav-links {

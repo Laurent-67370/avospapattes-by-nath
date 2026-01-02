@@ -4,11 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mentions Légales - À vos papattes by Nath</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="/images/logo.png">
+    <link rel="apple-touch-icon" href="/images/logo.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+
     <style>
         :root {
             --primary: #2A9D8F;
@@ -86,12 +91,34 @@
             color: var(--primary-dark);
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             text-decoration: none;
+            transition: transform 0.3s ease;
         }
 
-        .logo i {
-            color: var(--accent);
+        .logo:hover {
+            transform: scale(1.02);
+        }
+
+        .logo-img {
+            height: 50px;
+            width: auto;
+            border-radius: 50%;
+            object-fit: contain;
+        }
+
+        .logo-text {
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .logo-img {
+                height: 40px;
+            }
+
+            .logo-text {
+                display: none;
+            }
         }
 
         .back-btn {
@@ -269,7 +296,8 @@
     <header>
         <div class="header-container">
             <a href="index.html" class="logo">
-                <i class="fa-solid fa-paw"></i> À vos papattes by Nath
+                <img src="images/logo.png" alt="À vos papattes by Nath - Logo" class="logo-img">
+                <span class="logo-text">À vos papattes by Nath</span>
             </a>
             <div class="nav-actions">
                 <button class="theme-toggle" onclick="toggleTheme()">
