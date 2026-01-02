@@ -4,13 +4,13 @@
   "description": "Service de garde d'animaux et promenade à Oberhausbergen. Nath s'occupe de vos chiens et chats avec amour.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#EAC14D",
-  "theme_color": "#EAC14D",
+  "background_color": "#D9A84C",
+  "theme_color": "#D9A84C",
   "orientation": "portrait-primary",
   "icons": [
     {
       "src": "/images/logo.png",
-      "sizes": "630x640",
+      "sizes": "2752x1536",
       "type": "image/png",
       "purpose": "any"
     },
