@@ -325,16 +325,15 @@
             }
 
             .logo {
-                font-size: 0.95rem;
-                gap: 6px;
+                gap: 0;
             }
 
             .logo-text {
-                font-size: 0.75rem;
+                display: none;
             }
 
             .nav-links {
-                gap: 15px;
+                gap: 20px;
                 font-size: 0.9rem;
             }
 
