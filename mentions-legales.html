@@ -18,9 +18,10 @@
         :root {
             --primary: #2A9D8F;
             --primary-dark: #21867a;
-            --secondary: #E9C46A;
+            --secondary: #EAC14D;
             --accent: #E76F51;
-            --bg-light: #F4F9F9;
+            --logo-yellow: #EAC14D;
+            --bg-light: #FFFEF8;
             --bg-white: #FFFFFF;
             --text-dark: #264653;
             --text-gray: #666666;
@@ -69,11 +70,17 @@
         header {
             background-color: var(--bg-white);
             box-shadow: 0 2px 15px rgba(0,0,0,0.05);
-            padding: 15px 0;
+            padding: 18px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
             transition: background-color 0.3s;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 0;
+            }
         }
 
         .header-container {
@@ -87,37 +94,66 @@
 
         .logo {
             font-family: 'Fredoka', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: var(--primary-dark);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             text-decoration: none;
             transition: transform 0.3s ease;
         }
 
         .logo:hover {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         .logo-img {
-            height: 50px;
+            height: 85px;
             width: auto;
-            border-radius: 50%;
+            border-radius: 12px;
             object-fit: contain;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(234, 193, 77, 0.3);
+        }
+
+        .logo-img:hover {
+            box-shadow: 0 6px 20px rgba(234, 193, 77, 0.5);
         }
 
         .logo-text {
             font-weight: 600;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            white-space: nowrap;
+        }
+
+        @media (max-width: 968px) {
+            .logo-text {
+                font-size: 1.4rem;
+            }
         }
 
         @media (max-width: 768px) {
             .logo-img {
-                height: 40px;
+                height: 70px;
+                border-radius: 10px;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 65px;
             }
 
             .logo-text {
-                display: none;
+                font-size: 0.9rem;
             }
         }
 
