@@ -2,9 +2,10 @@
         :root {
             --primary: #2A9D8F;       /* Vert d'eau rassurant */
             --primary-dark: #21867a;
-            --secondary: #E9C46A;     /* Jaune doux */
+            --secondary: #EAC14D;     /* Jaune du logo "À vos papattes" */
             --accent: #E76F51;        /* Terracotta chaleureux */
-            --bg-light: #F4F9F9;      /* Fond très clair */
+            --logo-yellow: #EAC14D;   /* Jaune officiel du logo */
+            --bg-light: #FFFEF8;      /* Fond légèrement crème (harmonieux avec le logo) */
             --bg-white: #FFFFFF;
             --text-dark: #264653;     /* Texte principal */
             --text-gray: #666666;
@@ -223,7 +224,13 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            padding: 15px 0;
+            padding: 18px 0;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 0;
+            }
         }
 
         nav {
@@ -234,38 +241,65 @@
 
         .logo {
             font-family: 'Fredoka', sans-serif;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             color: var(--primary-dark);
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 15px;
             transition: transform 0.3s ease;
         }
 
         .logo:hover {
-            transform: scale(1.02);
+            transform: scale(1.05);
         }
 
         .logo-img {
-            height: 50px;
+            height: 85px;
             width: auto;
-            border-radius: 50%;
+            border-radius: 12px;
             object-fit: contain;
-            transition: transform 0.3s ease;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(234, 193, 77, 0.3);
+        }
+
+        .logo-img:hover {
+            box-shadow: 0 6px 20px rgba(234, 193, 77, 0.5);
         }
 
         .logo-text {
             font-weight: 600;
             white-space: nowrap;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--accent) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        @media (max-width: 968px) {
+            .logo-text {
+                font-size: 1.4rem;
+            }
         }
 
         @media (max-width: 768px) {
             .logo-img {
-                height: 40px;
+                height: 70px;
+                border-radius: 10px;
+            }
+
+            .logo {
+                font-size: 1.5rem;
+                gap: 12px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .logo-img {
+                height: 65px;
             }
 
             .logo-text {
-                display: none;
+                font-size: 0.9rem;
             }
         }
 
