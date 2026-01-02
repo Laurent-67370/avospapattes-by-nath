@@ -92,9 +92,9 @@ export function initContactForm() {
             if (error.code === 'unavailable') {
                 errorMessage += 'Problème de connexion. Veuillez réessayer dans quelques instants.';
             } else if (error.code === 'permission-denied') {
-                errorMessage += 'Erreur de permission. Contactez-nous par téléphone au 06 82 91 16 72.';
+                errorMessage += 'Erreur de permission. Contactez-nous par téléphone au 06 15 42 29 50.';
             } else {
-                errorMessage += 'Veuillez réessayer ou nous appeler au 06 82 91 16 72.';
+                errorMessage += 'Veuillez réessayer ou nous appeler au 06 15 42 29 50.';
             }
 
             alert(errorMessage);
