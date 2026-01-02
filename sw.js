@@ -3,7 +3,7 @@
  * Permet le fonctionnement hors ligne et améliore les performances
  */
 
-const CACHE_NAME = 'avospapattes-v1';
+const CACHE_NAME = 'avospapattes-v2';
 const urlsToCache = [
     '/',
     '/index.html',
@@ -15,7 +15,9 @@ const urlsToCache = [
     '/js/firebase-handler.js',
     '/js/map.js',
     '/js/gallery.js',
-    '/manifest.json'
+    '/manifest.json',
+    '/images/logo.png',
+    '/image.png'
 ];
 
 // Installation du service worker
